@@ -6,7 +6,7 @@ import Spotifly.src.models.*;
 public class VectorPerfil implements IRepositorio{
     private Vector<Perfil> perfis;
 
-    public VectorPefil(){
+    public VectorPerfil(){
         this.perfis = new Vector<Perifl>();
     }
 
