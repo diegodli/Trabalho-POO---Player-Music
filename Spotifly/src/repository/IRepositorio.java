@@ -1,10 +1,12 @@
-import Spotifly.src.models.*
+package repository;
+
+import models.*;
 
 public interface IRepositorio {
 
     public Musica buscar(String musica);
 
-    public Perfil buscar(String usuario);
+    public Perfil procurar(String usuario);
 
     public void atualizar(Perfil perfil, String novoUsuario);
 
