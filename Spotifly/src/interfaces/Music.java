@@ -14,34 +14,79 @@ import java.awt.event.MouseEvent;
 import javax.sound.sampled.*;
 import java.io.IOException;
 import java.net.URL;
-
-
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 public class Music extends javax.swing.JFrame {
 
     private Pagina_Inicial paginaInicial;
     private Clip clip;
+    private Clip secondClip;
+    private Icon iconPause;
+    private Icon iconPlay;
 
     public Music(Pagina_Inicial paginaInicial) {
         this.paginaInicial = paginaInicial;
         initComponents();
-        
-        this.paginaInicial = paginaInicial;
-    initComponents();
+        carregarIcones();  // Chame o método carregarIcones para inicializar os ícones
 
-    // Inicialize e carregue o Clip de áudio
-      this.paginaInicial = paginaInicial;
-    initComponents();
+        try {
+            URL audioFile1 = getClass().getResource("jack.wav");
+            AudioInputStream audioInputStream1 = AudioSystem.getAudioInputStream(audioFile1);
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream1);
 
-    // Inicialize e carregue o Clip de áudio
-    try {
-        URL audioFile = getClass().getResource("jack.wav");
-        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(audioFile);
-        clip = AudioSystem.getClip();
-        clip.open(audioInputStream);
-    } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
-        e.printStackTrace();
+            // Inicialize e carregue o segundo Clip de áudio
+            URL audioFile2 = getClass().getResource("barao.wav");
+            AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(audioFile2);
+            secondClip = AudioSystem.getClip();
+            secondClip.open(audioInputStream2);
+        } catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void pararMusicas() {
+       if (clip != null && clip.isRunning()) {
+        clip.stop();
+        clip.setFramePosition(0);
+        // Defina o ícone para play quando a música for interrompida
+        jLabel26.setIcon(iconPlay);
+    }
+    if (secondClip != null && secondClip.isRunning()) {
+        secondClip.stop();
+        secondClip.setFramePosition(0);
+        // Defina o ícone para play quando a música for interrompida
+        jLabel28.setIcon(iconPlay);
     }
     }
+
+    private void carregarIcones() {
+        try {
+            // Carregue os ícones play e pause
+            iconPlay = new ImageIcon(getClass().getResource("/imagem/play.png"));
+            iconPause = new ImageIcon(getClass().getResource("/imagem/pause.png"));
+        } catch (Exception e) {
+            System.err.println("Erro ao carregar ícones: " + e.getMessage());
+        }
+    }
+    
+    private void tocarClip(Clip clip, JLabel label) {
+    if (clip != null) {
+        pararMusicas();  // Pare todas as músicas
+
+        if (!clip.isRunning()) {
+            // Se o Clip não estiver em execução, inicie a reprodução
+            clip.start();
+            label.setIcon(iconPause);
+        } else {
+            // Se o Clip estiver em execução, pare a reprodução
+            clip.stop();
+            clip.setFramePosition(0); // Volte para o início para reprodução subsequente
+            label.setIcon(iconPlay);
+        }
+    }
+}
+
 
      
 
@@ -139,11 +184,11 @@ public class Music extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setText("Ariana Grande");
+        jLabel11.setText("Maicon Jack");
 
         jLabel17.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("7 Rings");
+        jLabel17.setText("Pe de Pato");
 
         jLabel25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));
@@ -168,8 +213,8 @@ public class Music extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel17)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel25)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -197,17 +242,25 @@ public class Music extends javax.swing.JFrame {
         jLabel13.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Ariana Grande");
+        jLabel13.setText("Pisadinha");
 
         jLabel18.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("7 Rings");
+        jLabel18.setText("Barões");
 
         jLabel27.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(255, 255, 255));
         jLabel27.setText("3:38");
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/icons8-play-30.png"))); // NOI18N
+        jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel28MouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel28MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -221,10 +274,10 @@ public class Music extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addComponent(jLabel18)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
+                .addComponent(jLabel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -283,7 +336,7 @@ public class Music extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGap(0, 510, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel2Layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -326,16 +379,22 @@ public class Music extends javax.swing.JFrame {
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jLabel26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MousePressed
- if (clip != null) {
-        if (!clip.isRunning()) {
-            // Se o Clip não estiver em execução, inicie a reprodução
-            clip.start();
-        } else {
-            // Se o Clip estiver em execução, pare a reprodução
+    if (clip != null) {
+        if (clip.isRunning()) {
             clip.stop();
-            clip.setFramePosition(0); // Volte para o início para reprodução subsequente
+            clip.setFramePosition(0);
+            jLabel26.setIcon(iconPlay);
+        } else {
+            if (secondClip != null && secondClip.isRunning()) {
+                secondClip.stop();
+                secondClip.setFramePosition(0);
+                jLabel28.setIcon(iconPlay);
+            }
+            clip.start();
+            jLabel26.setIcon(iconPause);
         }
     }
+    
     }//GEN-LAST:event_jLabel26MousePressed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
@@ -347,41 +406,76 @@ public class Music extends javax.swing.JFrame {
     
     }//GEN-LAST:event_jPanel8MousePressed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel28MouseClicked
 
-        /* Create and display the form */
-       java.awt.EventQueue.invokeLater(new Runnable() {
-        public void run() {
-            Pagina_Inicial paginaInicial = new Pagina_Inicial();
-            new Music(paginaInicial).setVisible(true);
+    private void jLabel28MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MousePressed
+     if (secondClip != null) {
+        if (secondClip.isRunning()) {
+            secondClip.stop();
+            secondClip.setFramePosition(0);
+            jLabel28.setIcon(iconPlay);
+        } else {
+            if (clip != null && clip.isRunning()) {
+                clip.stop();
+                clip.setFramePosition(0);
+                jLabel26.setIcon(iconPlay);
+            }
+            secondClip.start();
+            jLabel28.setIcon(iconPause);
         }
-    });
     }
+    }//GEN-LAST:event_jLabel28MousePressed
+@Override
+public void setVisible(boolean visible) {
+    super.setVisible(visible);
+    
+    if (visible) { // Se a tela está sendo tornada visível
+        // Pare a reprodução das músicas ao mostrar a tela novamente
+        if (clip != null && clip.isRunning()) {
+            clip.stop();
+            clip.setFramePosition(0);
+        }
+        if (secondClip != null && secondClip.isRunning()) {
+            secondClip.stop();
+            secondClip.setFramePosition(0);
+        }
+    }
+}
+
+public static void main(String args[]) {
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6 is not available, stay with the default look and feel.
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
+            }
+        }
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(Music.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    }
+    //</editor-fold>
+
+    /* Create and display the form */
+   java.awt.EventQueue.invokeLater(new Runnable() {
+    public void run() {
+        Pagina_Inicial paginaInicial = new Pagina_Inicial();
+        new Music(paginaInicial).setVisible(true);
+    }
+});
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
