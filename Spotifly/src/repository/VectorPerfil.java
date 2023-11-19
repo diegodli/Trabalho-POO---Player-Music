@@ -3,7 +3,7 @@ package repository;
 import java.util.Vector;
 import models.*;
 
-public abstract class VectorPerfil implements IRepositorio{
+public abstract class VectorPerfil implements IRepositorioPerfil{
     private Vector<Perfil> perfis;
 
     public VectorPerfil(){
