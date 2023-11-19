@@ -3,7 +3,7 @@ package repository;
 import java.util.Vector;
 import models.*;
 
-public abstract class VectorMusica implements IRepositorio{
+public class VectorMusica implements IRepositorioMusica{
    private Vector<Musica> musicas;
 
    public VectorMusica(){
