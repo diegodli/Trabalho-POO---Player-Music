@@ -1,9 +1,9 @@
 package repository;
 
 import java.util.Vector;
-import Spotifly.src.models.*;
+import models.*;
 
-public class VectorMusica implements IRepositorio{
+public abstract class VectorMusica implements IRepositorio{
    private Vector<Musica> musicas;
 
    public VectorMusica(){
@@ -17,6 +17,6 @@ public class VectorMusica implements IRepositorio{
          }
       }
       return null;
-   }
+   }  
 }
 
