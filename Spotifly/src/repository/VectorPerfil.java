@@ -1,13 +1,13 @@
 package repository;
 
 import java.util.Vector;
-import Spotifly.src.models.*;
+import models.*;
 
-public class VectorPerfil implements IRepositorio{
+public abstract class VectorPerfil implements IRepositorio{
     private Vector<Perfil> perfis;
 
     public VectorPerfil(){
-        this.perfis = new Vector<Perifl>();
+        this.perfis = new Vector<Perfil>();
     }
 
     public void cadastrar(Perfil perfil){
@@ -17,7 +17,7 @@ public class VectorPerfil implements IRepositorio{
         this.perfis.add(perfil);
     }
     
-    public Perfil buscar(String usuario){
+    public Perfil procurar(String usuario){
         for(Perfil perfil : this.perfis){
             if(perfil.getUsuario().equals(usuario)){
                 return perfil;
