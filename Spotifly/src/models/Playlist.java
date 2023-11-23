@@ -40,7 +40,7 @@ public class Playlist {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose(); // Fechar o frame atual
-                Musica.main(new String[0]); // Abrir o frame Musica
+                MusicasPlaylist.main(new String[0]); // Abrir o frame Musica
             }
         });
 
