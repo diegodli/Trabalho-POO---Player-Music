@@ -43,6 +43,17 @@ public class Music extends javax.swing.JFrame {
     private Icon iconPlay6;
     private JLabel outraLabel6;
 private Clip outraClip6;
+private JLabel outraLabel2;
+private JLabel outraLabel3;
+private JLabel outraLabel4;
+private JLabel outraLabel5;
+private Clip outraClip1;
+private Clip outraClip2;
+private Clip outraClip3;
+private Clip outraClip4;
+private Clip outraClip5;
+private Clip clipAnterior;
+private JLabel labelAnterior;
 
 
     public Music(Pagina_Inicial paginaInicial) {
@@ -69,7 +80,7 @@ private Clip outraClip6;
             clip3.open(audioInputStream3);
 
             // Inicialize e carregue o quarto Clip de áudio
-            URL audioFile4 = getClass().getResource("jack.wav");
+            URL audioFile4 = getClass().getResource("music4.wav");
             AudioInputStream audioInputStream4 = AudioSystem.getAudioInputStream(audioFile4);
             clip4 = AudioSystem.getClip();
             clip4.open(audioInputStream4);
@@ -123,6 +134,7 @@ private Clip outraClip6;
         outraLabel4.setIcon(iconPlay);
         outraLabel5.setIcon(iconPlay);
         outraLabel6.setIcon(iconPlay);
+        clipAtual = null;  // Adicionamos esta linha para indicar que não há mais clipAtual em execução
     } else {
         if (novoClip != null) {
             if (novoClip.isRunning()) {
@@ -135,38 +147,36 @@ private Clip outraClip6;
             }
             clipAtual = novoClip;
 
-            outraClip1.stop();
-            outraClip1.setFramePosition(0);
-            outraLabel1.setIcon(iconPlay);
+            // Aqui, vamos verificar se o novoClip é o mesmo que o clipAtual
+            // Se for, não precisamos parar e reiniciar a música, apenas trocar os ícones
+            if (novoClip != clipAtual) {
+                outraClip1.stop();
+                outraClip1.setFramePosition(0);
+                outraLabel1.setIcon(iconPlay);
 
-            outraClip2.stop();
-            outraClip2.setFramePosition(0);
-            outraLabel2.setIcon(iconPlay);
+                outraClip2.stop();
+                outraClip2.setFramePosition(0);
+                outraLabel2.setIcon(iconPlay);
 
-            outraClip3.stop();
-            outraClip3.setFramePosition(0);
-            outraLabel3.setIcon(iconPlay);
+                outraClip3.stop();
+                outraClip3.setFramePosition(0);
+                outraLabel3.setIcon(iconPlay);
 
-            outraClip4.stop();
-            outraClip4.setFramePosition(0);
-            outraLabel4.setIcon(iconPlay);
+                outraClip4.stop();
+                outraClip4.setFramePosition(0);
+                outraLabel4.setIcon(iconPlay);
 
-            outraClip5.stop();
-            outraClip5.setFramePosition(0);
-            outraLabel5.setIcon(iconPlay);
+                outraClip5.stop();
+                outraClip5.setFramePosition(0);
+                outraLabel5.setIcon(iconPlay);
 
-            outraClip6.stop();
-            outraClip6.setFramePosition(0);
-            outraLabel6.setIcon(iconPlay);
+                outraClip6.stop();
+                outraClip6.setFramePosition(0);
+                outraLabel6.setIcon(iconPlay);
+            }
         }
     }
 }
-     
-
-
-    // Restante do código...
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -216,6 +226,8 @@ private Clip outraClip6;
         jLabel37 = new javax.swing.JLabel();
         jLabel38 = new javax.swing.JLabel();
         jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jLabel41 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -609,6 +621,16 @@ private Clip outraClip6;
             .addComponent(jLabel38, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jLabel40.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/icons8-skip-to-start-16.png"))); // NOI18N
+
+        jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel41.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/icons8-end-16.png"))); // NOI18N
+        jLabel41.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel41MousePressed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -623,6 +645,12 @@ private Clip outraClip6;
             .addComponent(jPanel11, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel12, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                .addGap(169, 169, 169)
+                .addComponent(jLabel40)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel41)
+                .addGap(147, 147, 147))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,7 +670,11 @@ private Clip outraClip6;
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(12, 12, 12)
                 .addComponent(jPanel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 146, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel41)
+                    .addComponent(jLabel40))
+                .addGap(99, 99, 99))
         );
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
@@ -700,7 +732,7 @@ private Clip outraClip6;
     }//GEN-LAST:event_jPanel3MousePressed
 
     private void jLabel26MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel26MousePressed
-   tocarMusica(clip1, iconPlay1, iconPause1, jLabel26, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4, jLabel34, clip5, jLabel39, clip6);
+     tocarMusica(clip1, iconPlay1, iconPause1, jLabel26, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4, jLabel34, clip5, jLabel39, clip6);
     }//GEN-LAST:event_jLabel26MousePressed
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
@@ -725,7 +757,7 @@ private Clip outraClip6;
     }//GEN-LAST:event_jLabel30MouseClicked
 
     private void jLabel30MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel30MousePressed
-    tocarMusica(clip3, iconPlay3, iconPause3, jLabel30, jLabel32, clip1, jLabel28, clip2, jLabel34, clip4, jLabel39, clip5, jLabel26, clip6);
+    tocarMusica(clip3, iconPlay3, iconPause3, jLabel30, jLabel32, clip4, jLabel34, clip5, jLabel39, clip6, jLabel26, clip1, jLabel28, clip2);
      // TODO add your handling code here:
     }//GEN-LAST:event_jLabel30MousePressed
 
@@ -734,8 +766,7 @@ private Clip outraClip6;
     }//GEN-LAST:event_jLabel32MouseClicked
 
     private void jLabel32MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MousePressed
-    tocarMusica(clip4, iconPlay4, iconPause4, jLabel32, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3, jLabel34, clip5, jLabel39, clip6);
-
+    tocarMusica(clip4, iconPlay4, iconPause4, jLabel32, jLabel34, clip5, jLabel39, clip6, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3);
     }//GEN-LAST:event_jLabel32MousePressed
 
     private void jLabel34MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseClicked
@@ -743,8 +774,7 @@ private Clip outraClip6;
     }//GEN-LAST:event_jLabel34MouseClicked
 
     private void jLabel34MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MousePressed
- tocarMusica(clip5, iconPlay5, iconPause5, jLabel34, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4, jLabel39, clip6);
-     // TODO add your handling code here:
+ tocarMusica(clip5, iconPlay5, iconPause5, jLabel34, jLabel39, clip6, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4);
     }//GEN-LAST:event_jLabel34MousePressed
 
     private void jLabel39MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MouseClicked
@@ -752,9 +782,12 @@ private Clip outraClip6;
     }//GEN-LAST:event_jLabel39MouseClicked
 
     private void jLabel39MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel39MousePressed
-  tocarMusica(clip6, iconPlay6, iconPause6, jLabel39, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4, jLabel34, clip5);
-     // TODO add your handling code here:
+   tocarMusica(clip6, iconPlay6, iconPause6, jLabel39, jLabel26, clip1, jLabel28, clip2, jLabel30, clip3, jLabel32, clip4, jLabel34, clip5);
     }//GEN-LAST:event_jLabel39MousePressed
+
+    private void jLabel41MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel41MousePressed
+       // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel41MousePressed
 @Override
 public void setVisible(boolean visible) {
     super.setVisible(visible);
@@ -838,6 +871,8 @@ public static void main(String args[]) {
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
+    private javax.swing.JLabel jLabel40;
+    private javax.swing.JLabel jLabel41;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
