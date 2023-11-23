@@ -12,7 +12,7 @@ public class VectorPerfil implements IRepositorioPerfil{
 
     public void cadastrar(Perfil perfil){
         if(this.existe(perfil.getUsuario())){
-            //exeção para se aquele nome de usurario já existir aqui
+            //exeção para se aquele nome de usuario já existir aqui
         }
         this.perfis.add(perfil);
     }
@@ -22,18 +22,10 @@ public class VectorPerfil implements IRepositorioPerfil{
             if(perfil.getUsuario().equals(usuario)){
                 return perfil;
             }
+            else{
+                //exceção para se o nome de usuario não existir
+            }
         } 
         return null;
     }
-
-    public void atualizar(Perfil perfil, String novoUsuario){
-        if(perfil.getUsuario().equals(usuario)){
-            email = perfil.getEmail();
-            playlists = perfil.getPlaylists();
-            usuario = novoUsuario;
-        } else {
-            //exceção para se o usuario não existir aqui
-        }
-    }
-
 }
