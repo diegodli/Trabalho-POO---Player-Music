@@ -9,7 +9,7 @@ import java.nio.file.Paths;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Line;
 import javax.sound.sampled.Mixer;
-import models.Musica;
+import interfaces.Music;
 import models.Spotifly;
 
 /**
