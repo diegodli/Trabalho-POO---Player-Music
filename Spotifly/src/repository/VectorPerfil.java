@@ -11,7 +11,7 @@ public class VectorPerfil implements IRepositorioPerfil{
     }
 
     public void cadastrar(Perfil perfil){
-        if(this.existe(perfil.getUsuario())){
+        if(this.existe(perfil)){
             //exeção para se aquele nome de usuario já existir aqui
         }
         this.perfis.add(perfil);
@@ -28,4 +28,7 @@ public class VectorPerfil implements IRepositorioPerfil{
         } 
         return null;
     }
+    public boolean existe(Perfil perfil) {
+    return perfil != null && this.procurar(perfil.getUsuario()) != null;
+  }
 }
