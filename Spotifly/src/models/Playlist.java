@@ -1,6 +1,6 @@
 package models;
 
-import models.Musica;
+import view.MusicasPlaylist;
 
 import javax.swing.*;
 import java.awt.*;
