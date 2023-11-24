@@ -1,14 +1,15 @@
 package repository;
 
+import java.util.Vector;
 import models.*;
 
 public interface IRepositorioPlaylist {
  
-    public void inserirMusicaNaPlaylist(Perfil perfil, Musica musica);
+    public void adicionar(Perfil perfil, Musica musica,  Vector<Perfil> perfis, Vector<Musica>musicas);
     
-    public void removerMusicaDaPlaylist(Perfil perfil, Musica musica);
+    public void remover(Perfil perfil, Musica musica, Vector<Perfil> perfis, Vector<Musica>musicas);
     
-    public Musica buscar(String musica);
+    public Musica buscar(Musica musica);
     
     public int tamanho();
 }
