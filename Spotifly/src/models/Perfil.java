@@ -1,29 +1,26 @@
 package models;
-// import IRepositorioMusica
+import repository.IRepositorioMusica;
+
 public abstract class Perfil {
-    private String nomeDoPerfil;
-    private String email;
-    private IRepositorioMusica playlists;
+    private String usuario;
+    protected IRepositorioMusica playlist;
     
-    public Perfil (String nomeDoPerfil, String email, IRepositorioMusica playlists) {
-        this.nomeDoPerfil = nomeDoPerfil;
-        this.email = email;
-        this.playlists = playlists;
-    }
-    
-    public abstract void CriarPlaylist(String nomePlaylist);
-    
-    public String getNomeDoPerfil() {
-        return nomeDoPerfil;
-    }
-    public void setNomeDoPerfil(String nomeDoPerfil) {
-        this.nomeDoPerfil = nomeDoPerfil;
+    public Perfil (String usuario, IRepositorioMusica playlist) {
+        this.usuario = usuario;
+        
+        this.playlist = playlist;
     }
     
-    public String getEmail() {
-        return email;
+    public abstract void AdicionarMusica(String nomeDaMusica);
+    
+    public void RemoverMusica(String nomeDaMusica) {
+        playlist.remover(nomeDaMusica);
     }
-    public void setEmail(String email) {
-        this.email = email;
+    
+    public String getUsuario() {
+        return usuario;
     }
+    
+    
+    
 }
