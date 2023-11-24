@@ -11,24 +11,19 @@ public class VectorPerfil implements IRepositorioPerfil{
     }
 
     public void cadastrar(Perfil perfil){
-        if(this.existe(perfil)){
-            //exeção para se aquele nome de usuario já existir aqui
+        if(perfis.contains(perfil)){
+            //exeção para se aquele perfil já existir aqui
         }
         this.perfis.add(perfil);
     }
     
-    public Perfil procurar(String usuario){
-        for(Perfil perfil : this.perfis){
-            if(perfil.getUsuario().equals(usuario)){
-                return perfil;
-            }
-            else{
-                //exceção para se o nome de usuario não existir
-            }
-        } 
+    public Perfil procurar(Perfil perfil){
+        if(perfis.contains(perfil)){
+            return perfil;
+        }
         return null;
+        //exceção para se o perfil não for encontrado
     }
-    public boolean existe(Perfil perfil) {
-    return perfil != null && this.procurar(perfil.getUsuario()) != null;
-  }
+       
+
 }
