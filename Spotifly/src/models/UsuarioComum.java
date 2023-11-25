@@ -7,14 +7,14 @@ import java.io.Serializable;
 
 public class UsuarioComum extends Usuario implements Serializable {
 
-    private String username;
-    private String password;
+    /*private String username;
+    private String password;*/
 
     public UsuarioComum(String username, String password) {
         super(username, password);
     }
 
-    // Métodos para controle da serialização
+    /*// Métodos para controle da serialização
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(getUsername());
@@ -28,7 +28,7 @@ public class UsuarioComum extends Usuario implements Serializable {
         String password = (String) in.readObject();
         this.username = username;  
         this.password = password;
-    }
+    }*/
 
 
     // Implementação específica para usuário comum
