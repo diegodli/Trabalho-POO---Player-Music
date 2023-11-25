@@ -3,16 +3,23 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import models.Usuario;
+import models.UsuarioComum;
+import models.UsuarioPremium;
+
 
 public class PaginaInicial extends JFrame {
+    
+    private Usuario usuario;
 
-    public PaginaInicial() {
+    public PaginaInicial(Usuario usuario) {
+        this.usuario = usuario;
         // Configurações do frame
         setTitle("Spotifly");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
         setLocationRelativeTo(null); // Centraliza o frame na tela
-
+        
         // Configuração do painel principal
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
@@ -25,6 +32,13 @@ public class PaginaInicial extends JFrame {
         projectNameLabel.setFont(new Font("Arial", Font.BOLD, 24));
         projectNameLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(projectNameLabel, BorderLayout.NORTH);
+        
+        // Add the label to display user information in the top-right corner
+        JLabel userInfoLabel = new JLabel("Usuário: " + usuario.getUsername() + " (" + tipoUsuario() + ")");
+        userInfoLabel.setForeground(Color.WHITE);
+        userInfoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
+        panel.add(userInfoLabel, BorderLayout.NORTH);
+
 
         // Configuração do painel dividido em dois
         JSplitPane splitPane = new JSplitPane();
@@ -40,12 +54,13 @@ public class PaginaInicial extends JFrame {
 
         JButton musicasButton = new JButton("Músicas");
         JButton playlistButton = new JButton("Playlist");
+        JButton sair = new JButton("Sair");
 
         // Adiciona ação aos botões (substitua com suas ações reais)
         musicasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Musicc().setVisible(true);
+                new Musicc(usuario).setVisible(true);
                 dispose(); // Fecha o frame atual (Pagina_inicial)
             }
         });
@@ -57,9 +72,18 @@ public class PaginaInicial extends JFrame {
                 // Exemplo: new PlaylistFrame().setVisible(true);
             }
         });
+        
+        sair.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new TelaLogin().setVisible(true);
+                dispose();
+            }
+        });
 
         leftPanel.add(musicasButton);
         leftPanel.add(playlistButton);
+        leftPanel.add(sair);
 
         splitPane.setLeftComponent(leftPanel);
 
@@ -70,12 +94,17 @@ public class PaginaInicial extends JFrame {
 
         splitPane.setRightComponent(rightPanel);
     }
+    
+    private String tipoUsuario() {
+        if (usuario instanceof UsuarioPremium) return "Premium";
+        else return "Comum";
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new PaginaInicial().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }

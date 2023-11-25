@@ -4,10 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import models.Usuario;
+import models.*;
 
 public class VectorUsuario implements Serializable {
 
     private List<Usuario> usuarios;
+    private final String filePath = "usuarios.ser";
 
     public VectorUsuario() {
         this.usuarios = new ArrayList<>();
@@ -26,6 +28,10 @@ public class VectorUsuario implements Serializable {
         }
         return null;
     }
+    
+    public boolean existe (String username) {
+        return (buscarUsuario(username) != null);
+    }
 
     public void exibirUsuarios() {
         System.out.println("Usuários cadastrados:");
@@ -34,8 +40,8 @@ public class VectorUsuario implements Serializable {
         }
     }
 
-    private void serializarUsuarios() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("usuarios.ser"))) {
+    public void serializarUsuarios() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
             out.writeObject(usuarios);
         } catch (IOException e) {
             e.printStackTrace();
@@ -44,7 +50,7 @@ public class VectorUsuario implements Serializable {
 
     @SuppressWarnings("unchecked")
     public void desserializarUsuarios() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("usuarios.ser"))) {
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filePath))) {
             Object obj = in.readObject();
             if (obj instanceof List<?>) {
                 usuarios = (List<Usuario>) obj;
