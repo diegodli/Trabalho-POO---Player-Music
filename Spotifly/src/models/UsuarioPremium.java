@@ -5,23 +5,16 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
-public abstract class Usuario implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
-    private String username;
-    private String password;
+public class UsuarioPremium extends Usuario implements Serializable{
 
-    public Usuario(String username, String password) {
-        this.username = username;
-        this.password = password;
+    /*private String username;
+    private String password;*/
+
+    public UsuarioPremium(String username, String password) {
+        super(username, password);
     }
 
-// Construtor sem argumentos exigido para a serialização
-    /*public Usuario() {
-        this("", "");
-    }
-
-    // Métodos para controle da serialização
+    /*// Métodos para controle da serialização
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
         out.writeObject(getUsername());
@@ -37,14 +30,9 @@ public abstract class Usuario implements Serializable {
         this.password = password;
     }*/
 
-    public String getUsername() {
-        return username;
+    // Implementação específica para usuário premium
+    @Override
+    public void metodoAbstrato() {
+        // Implementação específica para usuário premium, se necessário
     }
-
-    public String getPassword() {
-        return password;
-    }
-
-    // Método abstrato que pode ser implementado nas subclasses
-    public abstract void metodoAbstrato();
 }
