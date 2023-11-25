@@ -3,11 +3,8 @@ package models;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
-public abstract class Usuario implements Serializable {
-    private static final long serialVersionUID = 1L;
-    
+public abstract class Usuario {
     private String username;
     private String password;
 
@@ -17,7 +14,7 @@ public abstract class Usuario implements Serializable {
     }
 
 // Construtor sem argumentos exigido para a serialização
-    /*public Usuario() {
+    public Usuario() {
         this("", "");
     }
 
@@ -35,7 +32,7 @@ public abstract class Usuario implements Serializable {
         String password = (String) in.readObject();
         this.username = username;  
         this.password = password;
-    }*/
+    }
 
     public String getUsername() {
         return username;
