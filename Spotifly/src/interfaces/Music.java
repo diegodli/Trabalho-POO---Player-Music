@@ -62,13 +62,13 @@ private JLabel labelAnterior;
         carregarIcones();  // Chame o método carregarIcones para inicializar os ícones
 
         try {
-            URL audioFile1 = getClass().getResource("jack.wav");
+            URL audioFile1 = getClass().getResource("gustavomioto-gustavo-mioto-anti-amor-part-jorge-e-mateus-61cde797.wav");
             AudioInputStream audioInputStream1 = AudioSystem.getAudioInputStream(audioFile1);
             clip1 = AudioSystem.getClip();
             clip1.open(audioInputStream1);
 
             // Inicialize e carregue o segundo Clip de áudio
-            URL audioFile2 = getClass().getResource("barao.wav");
+            URL audioFile2 = getClass().getResource("joaogomescantor-dengo-802f8e08.wav");
             AudioInputStream audioInputStream2 = AudioSystem.getAudioInputStream(audioFile2);
             clip2 = AudioSystem.getClip();
             clip2.open(audioInputStream2);
