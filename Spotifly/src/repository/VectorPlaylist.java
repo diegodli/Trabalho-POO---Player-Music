@@ -13,7 +13,7 @@ public class VectorPlaylist implements IRepositorioPlaylist{
     }
     
    
-    public void adicionar(Perfil perfil, Musica musica, Vector<Perfil> perfis, Vector<Musica> musicas){
+    public void adicionar(Usuario perfil, Musica musica, Vector<Usuario> perfis, Vector<Musica> musicas){
         if(perfis.contains(perfil) && musicas.contains(musica)){
             if(!playlist.contains(musica)){
                 this.playlist.add(musica);
@@ -23,7 +23,7 @@ public class VectorPlaylist implements IRepositorioPlaylist{
        //exceção para se o perfil e/ou música não for encontrado
     }
     
-    public void remover(Perfil perfil, Musica musica, Vector<Perfil> perfis, Vector<Musica> musicas){
+    public void remover(Usuario perfil, Musica musica, Vector<Usuario> perfis, Vector<Musica> musicas){
         if(perfis.contains(perfil) && musicas.contains(musica)){
             if(playlist.contains(musica)){
                 this.playlist.remove(musica);

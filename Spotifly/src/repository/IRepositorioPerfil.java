@@ -1,10 +1,10 @@
 package repository;
 
-import models.Perfil;
+import models.Usuario;
 
 public interface IRepositorioPerfil{
 
-    public Perfil procurar(Perfil perfil);
+    public Usuario procurar(Usuario perfil);
     
-    public void cadastrar(Perfil perfil) ;  
+    public void cadastrar(Usuario perfil);  
 }

@@ -95,7 +95,7 @@ public class Pagina_Inicial extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(21, 21, 21));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/icons8-musical-notes-30.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/icon-music.png"))); // NOI18N
         jLabel2.setOpaque(true);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -339,7 +339,7 @@ public class Pagina_Inicial extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/ed75daf71e5b866b574f3527a128a00b_resized (2).jpg"))); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagem/img-camila-cabelo.jpg"))); // NOI18N
         jLabel18.setText("jLabel9");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -421,7 +421,7 @@ public class Pagina_Inicial extends javax.swing.JFrame {
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
                                         
     Music musica = new Music(this);
-    musica.setVisible(true);        
+    musica.setVisible(true);
     }//GEN-LAST:event_jLabel1MousePressed
 
     /**
@@ -491,8 +491,7 @@ public class Pagina_Inicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JSlider jSlider1;
     // End of variables declaration//GEN-END:variables
-
-    
+  
 }
 
 

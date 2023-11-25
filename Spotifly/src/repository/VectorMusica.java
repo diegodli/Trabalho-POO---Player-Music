@@ -14,9 +14,6 @@ public class VectorMusica implements IRepositorioMusica {
     }
     public VectorMusica() {
         this.musicas = new Vector<>();
-        cadastrarMusica("url1", "Nome1", "Artista 1");
-        cadastrarMusica("url2", "Nome2", "Artista 2");
-        cadastrarMusica("url3", "Nome3", "Artista 3"); 
    
     }
 
@@ -30,10 +27,8 @@ public class VectorMusica implements IRepositorioMusica {
         return null;
     }
 
-    public void cadastrarMusica(String url, String nome, String artista) {
-        Musica novaMusica = new Musica(url, nome, artista);
-        this.musicas.add(novaMusica);
-
+    public void adicionar(Musica musica) {
+        
     }
     
     public Musica obterMusicaPorUrl(String url) {
@@ -44,6 +39,15 @@ public class VectorMusica implements IRepositorioMusica {
         }
         return null;
     }  
+
+    private void imprimirUrlsMusicas() {
+        
+    }
+
+    @Override
+    public void remover(Musica musica) {
+        
+    }
     
 }
 
