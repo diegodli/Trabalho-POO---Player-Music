@@ -116,7 +116,6 @@ public class TelaLogin extends javax.swing.JFrame {
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
     
-        repositorioUsuarios.desserializarUsuarios();
         Usuario usuario = repositorioUsuarios.buscarUsuario(username);
     
         if (usuario != null && usuario.getPassword().equals(password)) {
@@ -125,46 +124,33 @@ public class TelaLogin extends javax.swing.JFrame {
                 System.out.println("Login bem-sucedido");
                 JOptionPane.showMessageDialog(null, "Login bem-sucedido como usuário premium!");
                 // Faça a lógica específica para usuários premium, se necessário
-                 new PaginaInicial(usuario).setVisible(true);
-                 
-                 dispose();
             } else {
                 // Usuário comum
                 JOptionPane.showMessageDialog(null, "Login bem-sucedido como usuário comum!");
                 // Faça a lógica específica para usuários comuns, se necessário
-                
-                new PaginaInicial(usuario).setVisible(true);
-                 
-                dispose();
             }
         } else {
             System.out.println("Login falhou");
-            
-            if (repositorioUsuarios.existe(username)) {
-                JOptionPane.showMessageDialog(null, "Senha Incorreta");
+            JOptionPane.showMessageDialog(null, "Criando uma nova conta para o usuário...");
+    
+            // Criar uma nova conta com o usuário e senha fornecidos
+            if (password.equals("premium")) {
+                // Criar usuário premium
+                usuario = new UsuarioPremium(username, password);
+            } else {
+                // Criar usuário comum
+                usuario = new UsuarioComum(username, password);
             }
-            else {
-                JOptionPane.showMessageDialog(null, "Criando uma nova conta para o usuário...");
-
-                // Criar uma nova conta com o usuário e senha fornecidos
-                if (password.equals("premium")) {
-                    // Criar usuário premium
-                    usuario = new UsuarioPremium(username, password);
-                } else {
-                    // Criar usuário comum
-                    usuario = new UsuarioComum(username, password);
-                }
-
-                // Adicionar o novo usuário ao repositório
-                repositorioUsuarios.cadastrarUsuario(usuario);
-                repositorioUsuarios.serializarUsuarios();
-
-                // Redirecionar para a tela de página inicial
-                new PaginaInicial(usuario).setVisible(true);
-
-                // Fechar o frame de login após o login bem-sucedido
-                dispose();
-            }
+    
+            // Adicionar o novo usuário ao repositório
+            repositorioUsuarios.cadastrarUsuario(usuario);
+            repositorioUsuarios.desserializarUsuarios();
+    
+            // Redirecionar para a tela de página inicial
+            new PaginaInicial().setVisible(true);
+    
+            // Fechar o frame de login após o login bem-sucedido
+            dispose();
         }
     }
     
