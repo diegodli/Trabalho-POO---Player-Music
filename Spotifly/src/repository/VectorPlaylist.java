@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.Vector;
+import java.util.List;
 import models.*;
 import repository.*;
 
@@ -13,18 +14,21 @@ public class VectorPlaylist implements IRepositorioPlaylist{
     }
     
    
-    public void adicionar(Usuario perfil, Musica musica, Vector<Usuario> perfis, Vector<Musica> musicas){
-        if(perfis.contains(perfil) && musicas.contains(musica)){
+    public void adicionar(Usuario usuario, Musica musica, List<Usuario> usuarios, Vector<Musica> musicas){
+        if(usuarios.contains(usuario) && musicas.contains(musica)){
             if(!playlist.contains(musica)){
-                this.playlist.add(musica);
+                if(usuario.podeAdd() == true){
+                    this.playlist.add(musica);
+                }
+                //exceção para se não puder adicionar mais músicas
             }
             //exceção para se a música já estiver na playlist
         }
        //exceção para se o perfil e/ou música não for encontrado
     }
     
-    public void remover(Usuario perfil, Musica musica, Vector<Usuario> perfis, Vector<Musica> musicas){
-        if(perfis.contains(perfil) && musicas.contains(musica)){
+    public void remover(Usuario usuario, Musica musica, List<Usuario> usuarios, Vector<Musica> musicas){
+        if(usuarios.contains(usuario) && musicas.contains(musica)){
             if(playlist.contains(musica)){
                 this.playlist.remove(musica);
             }
@@ -43,4 +47,5 @@ public class VectorPlaylist implements IRepositorioPlaylist{
     public int tamanho(){
         return this.playlist.size();
     }
+
 }

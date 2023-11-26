@@ -6,7 +6,7 @@ import java.util.List;
 import models.Usuario;
 import models.*;
 
-public class VectorUsuario implements Serializable {
+public class VectorUsuario implements Serializable, IRepositorioUsuario {
 
     private List<Usuario> usuarios;
     private final String filePath = "usuarios.ser";
@@ -64,4 +64,5 @@ public class VectorUsuario implements Serializable {
             e.printStackTrace();
         }
     }
+
 }

@@ -4,38 +4,24 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import repository.VectorPlaylist;
 
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
     private String username;
     private String password;
+    protected VectorPlaylist playlist;
+    protected int numMusicas;
 
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-// Construtor sem argumentos exigido para a serialização
-    /*public Usuario() {
-        this("", "");
+    public void setNumMusicas(int numMusicas){ 
+      this.numMusicas = numMusicas ; 
     }
-
-    // Métodos para controle da serialização
-    private void writeObject(ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
-        out.writeObject(getUsername());
-        out.writeObject(getPassword());
-    }
-
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        // Chama o construtor da classe pai com os valores lidos
-        String username = (String) in.readObject();
-        String password = (String) in.readObject();
-        this.username = username;  
-        this.password = password;
-    }*/
 
     public String getUsername() {
         return username;
@@ -44,7 +30,13 @@ public abstract class Usuario implements Serializable {
     public String getPassword() {
         return password;
     }
+    public int getNumMusicas(){
+        return numMusicas;
+    }
+    public VectorPlaylist getPlaylist(){
+        return playlist;
+    }
 
     // Método abstrato que pode ser implementado nas subclasses
-    public abstract void metodoAbstrato();
+    public abstract boolean podeAdd();
 }
