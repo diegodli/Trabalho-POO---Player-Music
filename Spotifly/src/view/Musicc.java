@@ -87,6 +87,7 @@ public class Musicc extends JFrame {
             // Adiciona botões de play e pause ao lado de cada música
             JButton playButton = new JButton("Play");
             JButton pauseButton = new JButton("Pause");
+            JButton adicionarButton = new JButton("Adicionar");
 
             playButton.addActionListener(new ActionListener() {
                 @Override
@@ -112,6 +113,7 @@ public class Musicc extends JFrame {
             musicButtonPanel.add(musicaButton);
             musicButtonPanel.add(playButton);
             musicButtonPanel.add(pauseButton);
+            musicButtonPanel.add(adicionarButton);
 
             musicPanel.add(musicButtonPanel);
         }
