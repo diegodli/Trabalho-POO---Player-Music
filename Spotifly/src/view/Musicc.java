@@ -16,6 +16,10 @@ import java.io.File;
 
 public class Musicc extends JFrame {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private Usuario usuario;
     private MusicPlayer musicPlayer;
     private IRepositorioMusica repositorioMusica;

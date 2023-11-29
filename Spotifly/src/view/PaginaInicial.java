@@ -61,7 +61,7 @@ public class PaginaInicial extends JFrame {
         musicasButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Musicc(usuario).setVisible(true);
+                new Musicc().setVisible(true);
                 dispose(); // Fecha o frame atual (Pagina_inicial)
             }
         });
@@ -69,7 +69,8 @@ public class PaginaInicial extends JFrame {
         playlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 new Playlist().createAndShowGUI();
+                 new Playlist();
+                Playlist.createAndShowGUI(usuario);
         dispose();
                 // Adicione a lógica para exibir o frame de playlist
                 // Exemplo: new PlaylistFrame().setVisible(true);
