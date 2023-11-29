@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import models.Playlist;
 import models.Usuario;
 import models.UsuarioComum;
 import models.UsuarioPremium;
@@ -68,6 +69,8 @@ public class PaginaInicial extends JFrame {
         playlistButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                 new Playlist().createAndShowGUI();
+        dispose();
                 // Adicione a lógica para exibir o frame de playlist
                 // Exemplo: new PlaylistFrame().setVisible(true);
             }

@@ -8,13 +8,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class MusicasPlaylist {
+    
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI();
         });
     }
 
-    private static void createAndShowGUI() {
+    public static void createAndShowGUI() {
         JFrame frame = new JFrame("Músicas");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600);
@@ -33,12 +34,10 @@ public class MusicasPlaylist {
 
         // Adicionar botão de voltar para Playlist no canto superior direito
         JButton backButton = new JButton("Voltar para Playlist");
-        backButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.dispose(); // Fechar o frame atual
-                Playlist.main(new String[0]); // Voltar para a classe Playlist
-            }
+        backButton.addActionListener((ActionEvent e) -> {
+            frame.dispose(); // Fechar o frame atual
+            Playlist playlist = new Playlist();
+            playlist.createAndShowGUI(); // Correção aqui
         });
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -55,5 +54,8 @@ public class MusicasPlaylist {
         frame.getContentPane().setBackground(new Color(0, 0, 0)); // Cor preta fosca
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    private MusicasPlaylist() {
     }
 }

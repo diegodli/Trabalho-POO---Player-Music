@@ -4,17 +4,13 @@ import view.MusicasPlaylist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.Musicc;
 
 public class Playlist {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            createAndShowGUI();
-        });
-    }
-
-    private static void createAndShowGUI() {
+     public static void createAndShowGUI() {
         JFrame frame = new JFrame("Minha Playlist");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600); // Ajuste o tamanho conforme necessário
@@ -40,7 +36,7 @@ public class Playlist {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose(); // Fechar o frame atual
-                MusicasPlaylist.main(new String[0]); // Abrir o frame Musica
+                MusicasPlaylist.createAndShowGUI(); // Correção aqui
             }
         });
 
@@ -63,10 +59,12 @@ public class Playlist {
 
         // Configurar o botão "Adicionar Música"
         JButton addButton = new JButton("Adicionar Música");
-        addButton.addActionListener(e -> {
-            // Adicione a lógica para abrir a outra tela aqui
-            JOptionPane.showMessageDialog(frame, "Abrir a tela de adição de músicas");
+               addButton.addActionListener((ActionEvent e) -> {
+            frame.dispose(); // Fechar o frame atual (Playlist)
+            Musicc musiccPage = new Musicc();
+            musiccPage.setVisible(true); // Tornar a página Musicc visível
         });
+
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBackground(new Color(30, 30, 30)); // Cor escura fosca
         buttonPanel.add(addButton);
@@ -76,5 +74,8 @@ public class Playlist {
         frame.getContentPane().setBackground(new Color(0, 0, 0)); // Cor preta fosca
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public Playlist() {
     }
 }
