@@ -43,4 +43,7 @@ public abstract class Usuario implements Serializable {
     public boolean isPremium() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+	public void setNome(String string) {
+	}
 }

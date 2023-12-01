@@ -1,5 +1,6 @@
 package view;
 
+import models.Musica;
 import models.Playlist;
 import models.Usuario;
 
@@ -7,20 +8,28 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MusicasPlaylist {
 
     private static Usuario usuario2;
-
-
+    private static List<Musica> musicas2;
+  
     public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
-            createAndShowGUI(usuario2);
+            createAndShowGUI(usuario2, musicas2);
         });
     }
 
-    public static void createAndShowGUI(Usuario usuario) {
+    public static void createAndShowGUI(final Usuario usuario, List<Musica> musicas) {
         usuario2 = usuario;
+        musicas2 = musicas;
+        if (musicas == null) {
+            musicas = new ArrayList<>();
+        }
+    
+
         final JFrame frame = new JFrame("Músicas");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600);
@@ -59,6 +68,46 @@ public class MusicasPlaylist {
         frame.getContentPane().setBackground(new Color(0, 0, 0)); // Cor preta fosca
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+
+        // Adicionar botões de música
+        final JPanel musicPanel = new JPanel();
+        musicPanel.setLayout(new BoxLayout(musicPanel, BoxLayout.Y_AXIS));
+        musicPanel.setBackground(Color.LIGHT_GRAY);
+
+        for (final Musica musica : musicas) {
+            final JButton musicaButton = new JButton(musica.getNome());
+            final JButton playButton = new JButton("Play");
+            final JButton pauseButton = new JButton("Pause");
+            final JButton retirarButton = new JButton("Retirar");
+
+            playButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    // Lógica para tocar a música
+                }
+            });
+
+            pauseButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {
+                    // Lógica para pausar a música
+                }
+            });
+
+         
+
+            // Crie um novo botão de música e adicione-o ao painel
+            final JPanel musicButtonPanel = new JPanel();
+            musicButtonPanel.setLayout(new FlowLayout());
+            musicButtonPanel.add(musicaButton);
+            musicButtonPanel.add(playButton);
+            musicButtonPanel.add(pauseButton);
+            musicButtonPanel.add(retirarButton);
+
+            musicPanel.add(musicButtonPanel);
+        }
+
+        contentPanel.add(musicPanel);
     }
 
     private MusicasPlaylist() {

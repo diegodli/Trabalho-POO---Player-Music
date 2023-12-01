@@ -4,7 +4,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import models.Usuario;
-import models.*;
 
 public class VectorUsuario implements Serializable, IRepositorioUsuario {
 
@@ -15,13 +14,13 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
         this.usuarios = new ArrayList<>();
     }
 
-    public void cadastrarUsuario(Usuario usuario) {
+    public void cadastrarUsuario(final Usuario usuario) {
         usuarios.add(usuario);
         serializarUsuarios(); // Adiciona serialização após cada cadastro
     }
 
-    public Usuario buscarUsuario(String username) {
-        for (Usuario usuario : usuarios) {
+    public Usuario buscarUsuario(final String username) {
+        for (final Usuario usuario : usuarios) {
             if (usuario.getUsername().equals(username)) {
                 return usuario;
             }
@@ -29,13 +28,13 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
         return null;
     }
     
-    public boolean existe (String username) {
+    public boolean existe (final String username) {
         return (buscarUsuario(username) != null);
     }
 
     public void exibirUsuarios() {
         System.out.println("Usuários cadastrados:");
-        for (Usuario usuario : usuarios) {
+        for (final Usuario usuario : usuarios) {
             System.out.println("Username: " + usuario.getUsername() + ", Password: " + usuario.getPassword());
         }
     }
@@ -43,7 +42,7 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     public void serializarUsuarios() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
             out.writeObject(usuarios);
-        } catch (IOException e) {
+        } catch (final IOException e) {
             e.printStackTrace();
         }
     }
@@ -51,7 +50,7 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     @SuppressWarnings("unchecked")
     public void desserializarUsuarios() {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(filePath))) {
-            Object obj = in.readObject();
+            final Object obj = in.readObject();
             if (obj instanceof List<?>) {
                 usuarios = (List<Usuario>) obj;
                 System.out.println("Desserialização concluída. Usuários:");
