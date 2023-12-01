@@ -39,4 +39,11 @@ public abstract class Usuario implements Serializable {
 
     // Método abstrato que pode ser implementado nas subclasses
     public abstract boolean podeAdd();
+
+    public boolean isPremium() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+	public void setNome(String string) {
+	}
 }

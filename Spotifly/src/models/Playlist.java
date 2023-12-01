@@ -4,17 +4,13 @@ import view.MusicasPlaylist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import view.Musicc;
 
 public class Playlist {
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            createAndShowGUI();
-        });
-    }
-
-    private static void createAndShowGUI() {
+     public static void createAndShowGUI(final Usuario usuario) {
         JFrame frame = new JFrame("Minha Playlist");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 600); // Ajuste o tamanho conforme necessário
@@ -30,7 +26,7 @@ public class Playlist {
         frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
 
         // Configurar a seção da imagem
-        ImageIcon icon = new ImageIcon("C:\\Users\\c\\Documents\\SpotiflyTestes\\Playlist\\playlist\\music-img.jpg");
+        ImageIcon icon = new ImageIcon("Spotifly\\src\\Imagem\\rainha2.jpg");
         Image image = icon.getImage().getScaledInstance(200, 300, Image.SCALE_SMOOTH); // Ajuste o tamanho conforme necessário
         ImageIcon scaledIcon = new ImageIcon(image);
         JLabel imageLabel = new JLabel(scaledIcon);
@@ -40,7 +36,7 @@ public class Playlist {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose(); // Fechar o frame atual
-                MusicasPlaylist.main(new String[0]); // Abrir o frame Musica
+                MusicasPlaylist.createAndShowGUI(usuario, null); // Correção aqui
             }
         });
 
@@ -63,10 +59,12 @@ public class Playlist {
 
         // Configurar o botão "Adicionar Música"
         JButton addButton = new JButton("Adicionar Música");
-        addButton.addActionListener(e -> {
-            // Adicione a lógica para abrir a outra tela aqui
-            JOptionPane.showMessageDialog(frame, "Abrir a tela de adição de músicas");
+        addButton.addActionListener((ActionEvent e) -> {
+            frame.dispose(); // Fechar o frame atual (Playlist)
+            Musicc musiccPage = new Musicc(usuario);
+            musiccPage.setVisible(true); // Tornar a página Musicc visível
         });
+
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.setBackground(new Color(30, 30, 30)); // Cor escura fosca
         buttonPanel.add(addButton);
@@ -76,5 +74,8 @@ public class Playlist {
         frame.getContentPane().setBackground(new Color(0, 0, 0)); // Cor preta fosca
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public Playlist() {
     }
 }
