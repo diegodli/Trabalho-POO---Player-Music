@@ -47,8 +47,8 @@ public class MusicasPlaylist {
         titlePanel.add(titleLabel);
         frame.getContentPane().add(titlePanel, BorderLayout.NORTH);
 
-        // Adicionar músicas do usuário (trabalharemos mais adiante nesta parte)
-
+        // Adicionar botão de tocar a playlist
+        final JButton playCompletoButton = new JButton("Play");
         // Adicionar botão de voltar para Playlist no canto superior direito
         final JButton backButton = new JButton("Voltar para Playlist");
         backButton.addActionListener((final ActionEvent e) -> {
@@ -60,8 +60,12 @@ public class MusicasPlaylist {
         final JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
         buttonPanel.setBackground(new Color(30, 30, 30));
-        buttonPanel.add(backButton);
+        buttonPanel.add(backButton, BorderLayout.WEST);
+        buttonPanel.add(playCompletoButton, BorderLayout.CENTER);
         titlePanel.add(buttonPanel, BorderLayout.EAST); // Adicionando o botão ao painel de título
+         
+        
+        
 
         // Adicionar cor cinza ao fundo abaixo do título
         final JPanel contentPanel = new JPanel();
