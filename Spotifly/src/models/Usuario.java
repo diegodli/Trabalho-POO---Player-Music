@@ -28,6 +28,10 @@ public abstract class Usuario implements Serializable {
         return password;
     }
 
+    public void setPlaylist(VectorPlaylist playlist){
+        this.playlist = playlist;
+    }
+    
     public VectorPlaylist getPlaylist(){
         return playlist;
     }

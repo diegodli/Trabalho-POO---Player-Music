@@ -24,6 +24,22 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
         serializarUsuarios();
     }
     
+    public void atualizarUsuario(Usuario usuarioAtt){
+        Usuario usuarioBusca = buscarUsuario(usuarioAtt.getUsername());
+        if(usuarioBusca != null){
+            for(Usuario usuario : usuarios){
+                if(usuarioBusca == usuario){
+                    usuario.setPlaylist(usuarioAtt.getPlaylist());
+                    serializarUsuarios();
+                    break;
+                }
+             
+            }
+        }
+            
+        
+    }
+    
 
     public Usuario buscarUsuario(final String username) {
         for (final Usuario usuario : usuarios) {
@@ -37,6 +53,7 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     public boolean existe (final String username) {
         return (buscarUsuario(username) != null);
     }
+    
 
     public void exibirUsuarios() {
         System.out.println("Usuários cadastrados:");
@@ -46,12 +63,17 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     }
 
     public void serializarUsuarios() {
-        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
-            out.writeObject(usuarios);
-        } catch (final IOException e) {
-            e.printStackTrace();
-        }
+    File file = new File(filePath);
+    if (file.exists()) {
+        //file.delete();
     }
+    try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
+        out.writeObject(usuarios);
+    } catch (final IOException e) {
+        e.printStackTrace();
+    }
+}
+
 
     @SuppressWarnings("unchecked")
     public void desserializarUsuarios() {

@@ -114,8 +114,7 @@ public class MusicasPlaylist {
                     musicasTemporarias.remove(musica);
                     usuario.playlist.remover(musica);
                     repositorioUsuario.desserializarUsuarios();
-                    repositorioUsuario.removerUsuario(usuario);
-                    repositorioUsuario.cadastrarUsuario(usuario);
+                    repositorioUsuario.atualizarUsuario(usuario);
                     
                     musicButtonPanel.remove(musicaButton);
                     musicButtonPanel.remove(playButton);

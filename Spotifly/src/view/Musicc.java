@@ -156,10 +156,8 @@ public class Musicc extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     repositorioUsuario.desserializarUsuarios();
-                     repositorioUsuario.removerUsuario(usuario);
                     usuario.playlist.adicionar(musica);
-                    repositorioUsuario.cadastrarUsuario(usuario);
-                    
+                    repositorioUsuario.atualizarUsuario(usuario);
             
                     // Cria e mostra a GUI atualizada
                     MusicasPlaylist.createAndShowGUI(usuario);
