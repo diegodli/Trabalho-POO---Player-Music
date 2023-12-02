@@ -18,6 +18,12 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
         usuarios.add(usuario);
         serializarUsuarios(); // Adiciona serialização após cada cadastro
     }
+    
+    public void removerUsuario(final Usuario usuario){
+        usuarios.remove(usuario);
+        serializarUsuarios();
+    }
+    
 
     public Usuario buscarUsuario(final String username) {
         for (final Usuario usuario : usuarios) {
