@@ -78,7 +78,7 @@ public class MusicasPlaylist {
             final JButton musicaButton = new JButton(musica.getNome());
             final JButton playButton = new JButton("Play");
             final JButton pauseButton = new JButton("Pause");
-            final JButton retirarButton = new JButton("Retirar");
+            final JButton retirarButton = new JButton("Remover");
 
             playButton.addActionListener(new ActionListener() {
                 @Override
@@ -93,8 +93,7 @@ public class MusicasPlaylist {
                     // Lógica para pausar a música
                 }
             });
-
-         
+            
 
             // Crie um novo botão de música e adicione-o ao painel
             final JPanel musicButtonPanel = new JPanel();
@@ -105,6 +104,17 @@ public class MusicasPlaylist {
             musicButtonPanel.add(retirarButton);
 
             musicPanel.add(musicButtonPanel);
+            
+             retirarButton.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(final ActionEvent e) {  //apagando botão por botão
+                    musicButtonPanel.remove(musicaButton);
+                    musicButtonPanel.remove(playButton);
+                    musicButtonPanel.remove(pauseButton);
+                    musicButtonPanel.remove(retirarButton);
+                    musicButtonPanel.revalidate(); //atualizando a tela
+                }
+            });
         }
 
         contentPanel.add(musicPanel);
