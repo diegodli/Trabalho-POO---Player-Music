@@ -238,7 +238,6 @@ public class TelaCriarConta extends javax.swing.JFrame {
                 }
                 
                 repositorioUsuarios.cadastrarUsuario(novoUsuario);
-                repositorioUsuarios.serializarUsuarios();
                 new PaginaInicial(novoUsuario).setVisible(true);
                 dispose();
             }

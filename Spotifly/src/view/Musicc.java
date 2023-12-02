@@ -14,6 +14,7 @@ import repository.IRepositorioMusica;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
+import repository.VectorUsuario;
 
 
 public class Musicc extends JFrame {
@@ -131,7 +132,8 @@ public class Musicc extends JFrame {
         musicPanel.setLayout(new GridLayout(8, 1)); // Usando GridLayout com 1 coluna
         musicPanel.setBackground(Color.black);
         musicPanel.setAlignmentY(Component.CENTER_ALIGNMENT);  // Ou use Component.CENTER_ALIGNMENT
-       
+        
+       VectorUsuario repositorioUsuario = new VectorUsuario();
         
         for (Musica musica : musicas) {
             JButton musicaButton = new JButton(musica.getNome() + " - " + musica.getArtista());
@@ -153,7 +155,10 @@ public class Musicc extends JFrame {
             adicionarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    repositorioUsuario.desserializarUsuarios();
+                     repositorioUsuario.removerUsuario(usuario);
                     usuario.playlist.adicionar(musica);
+                    repositorioUsuario.cadastrarUsuario(usuario);
                     
             
                     // Cria e mostra a GUI atualizada

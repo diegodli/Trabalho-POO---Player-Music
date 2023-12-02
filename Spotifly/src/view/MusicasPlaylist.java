@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
+import repository.VectorUsuario;
 
 
 public class MusicasPlaylist {
@@ -73,6 +74,7 @@ public class MusicasPlaylist {
         musicPanel.setBackground(Color.LIGHT_GRAY);
         
         ArrayList<Musica> musicasTemporarias = new ArrayList<Musica>(usuario.playlist.listarPlaylist());
+        VectorUsuario repositorioUsuario = new VectorUsuario();
 
         for (final Musica musica : musicasTemporarias) {
             final JButton musicaButton = new JButton(musica.getNome());
@@ -111,6 +113,9 @@ public class MusicasPlaylist {
                     
                     musicasTemporarias.remove(musica);
                     usuario.playlist.remover(musica);
+                    repositorioUsuario.desserializarUsuarios();
+                    repositorioUsuario.removerUsuario(usuario);
+                    repositorioUsuario.cadastrarUsuario(usuario);
                     
                     musicButtonPanel.remove(musicaButton);
                     musicButtonPanel.remove(playButton);
