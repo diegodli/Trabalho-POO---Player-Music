@@ -1,5 +1,6 @@
 package repository;
 
+import Exception.*;
 import java.util.Vector;
 import java.util.List;
 import models.*;
@@ -17,15 +18,19 @@ public class VectorPlaylist implements IRepositorioPlaylist, Serializable{
     }
     
    
-    public void adicionar(Musica musica){
+    public void adicionar(Musica musica) throws AdicionarMusicaException{
         
-            if(!playlist.contains(musica)){
+        if(!playlist.contains(musica)){
                 
-                    this.playlist.add(musica);
-                }
-                //exceção para se não puder adicionar mais músicas
-            }
-            //exceção para se a música já estiver na playlist
+            this.playlist.add(musica);
+        }
+                
+            
+        else {
+            throw new MusicaJaExisteNaPlaylistException(musica);
+        }
+    }
+            
        
        //exceção para se o perfil e/ou música não for encontrado
     

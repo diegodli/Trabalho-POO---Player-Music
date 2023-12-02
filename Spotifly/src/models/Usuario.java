@@ -6,6 +6,8 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import repository.VectorPlaylist;
 
+import Exception.*;
+
 public abstract class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
     
@@ -36,7 +38,7 @@ public abstract class Usuario implements Serializable {
         return playlist;
     }
     
-    public abstract void adicionarMusica(Musica musica);
+    public abstract void adicionarMusica(Musica musica) throws AdicionarMusicaException;
     
     public void removerMusica(Musica musica){
         playlist.remover(musica);

@@ -1,5 +1,6 @@
 package view;
 
+import Exception.AdicionarMusicaException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -156,11 +157,15 @@ public class Musicc extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     repositorioUsuario.desserializarUsuarios();
-                    usuario.adicionarMusica(musica);
-                    repositorioUsuario.atualizarUsuario(usuario);
+                    try {
+                        usuario.adicionarMusica(musica);
+                        repositorioUsuario.atualizarUsuario(usuario);
             
-                    // Cria e mostra a GUI atualizada
-                    MusicasPlaylist.createAndShowGUI(usuario);
+                        MusicasPlaylist.createAndShowGUI(usuario);
+                    }
+                    catch(AdicionarMusicaException ame) {
+                        JOptionPane.showMessageDialog(null, ame.getMessage());
+                    }
                 }
             });
             

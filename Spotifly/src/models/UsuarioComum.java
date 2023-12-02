@@ -3,6 +3,7 @@ package models;
 import java.io.Serializable;
 import models.*;
 import repository.*;
+import Exception.*;
 
 public class UsuarioComum extends Usuario implements Serializable {
      private static int numMusicas = 4;
@@ -14,11 +15,12 @@ public class UsuarioComum extends Usuario implements Serializable {
     }
 
 
-    // Implementação específica para usuário comum
+    
     @Override
-   public void adicionarMusica(Musica musica){
+   public void adicionarMusica(Musica musica) throws AdicionarMusicaException {
        if(playlist.tamanho() < numMusicas){
            playlist.adicionar(musica);
        }
+       else throw new LimiteDeMusicasAtingidoException(musica);
    }
 }

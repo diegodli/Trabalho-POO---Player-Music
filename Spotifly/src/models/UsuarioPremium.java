@@ -1,5 +1,6 @@
 package models;
 
+import Exception.*;
 import java.io.Serializable;
 
 
@@ -12,7 +13,7 @@ public class UsuarioPremium extends Usuario implements Serializable{
 
     // Implementação específica para usuário premium
     @Override
-    public void adicionarMusica(Musica musica){
+    public void adicionarMusica(Musica musica) throws AdicionarMusicaException {
         playlist.adicionar(musica);
     }
 }
