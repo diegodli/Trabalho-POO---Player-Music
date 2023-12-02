@@ -24,13 +24,26 @@ public class TelaLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+
+        btnVoltar = new javax.swing.JButton();
+        
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        jPasswordField1 = new javax.swing.JPasswordField();
+        jPasswordField1.setEchoChar('\u2022');
         jLabel2 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JButton();
+        jCheckBoxMostrarSenha = new javax.swing.JCheckBox("Mostrar Senha");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent e) {
+                new PrimeiraTela().setVisible(true);
+                dispose();
+            }
+        });
 
         jLabel1.setText("Usuário");
 
@@ -40,9 +53,15 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
+
+        jCheckBoxMostrarSenha.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCheckBoxMostrarSenhaItemStateChanged(evt);
             }
         });
 
@@ -53,7 +72,10 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+
         jLabel2.setText("Senha");
+
+        btnVoltar.setText("Voltar");
 
         btnEntrar.setText("Entrar");
 
@@ -70,21 +92,27 @@ public class TelaLogin extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel1)
                             .addComponent(jTextField1)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))))
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
+                            .addComponent(jCheckBoxMostrarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVoltar)
+                            )))
                 .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(74, 74, 74)
+                .addComponent(btnVoltar)
+                .addGap(50, 50, 50)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jCheckBoxMostrarSenha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEntrar)
                 .addGap(14, 14, 14))
         );
@@ -107,11 +135,13 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
+         setLocationRelativeTo(null);
     }// </editor-fold>                        
 
     private void realizarLogin() {
         String username = jTextField1.getText();
-        String password = jTextField2.getText();
+        String password = new String(jPasswordField1.getPassword());
+
 
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
@@ -140,33 +170,23 @@ public class TelaLogin extends javax.swing.JFrame {
         } else {
             System.out.println("Login falhou");
             
-            if (repositorioUsuarios.existe(username)) {
-                JOptionPane.showMessageDialog(null, "Senha Incorreta");
+            JOptionPane.showMessageDialog(null, "Usuário e/ou Senha não correspondem");
             }
-            else {
-                JOptionPane.showMessageDialog(null, "Criando uma nova conta para o usuário...");
+            
 
-                // Criar uma nova conta com o usuário e senha fornecidos
-                if (password.equals("premium")) {
-                    // Criar usuário premium
-                    usuario = new UsuarioPremium(username, password);
-                } else {
-                    // Criar usuário comum
-                    usuario = new UsuarioComum(username, password);
-                }
+    }
 
-                // Adicionar o novo usuário ao repositório
-                repositorioUsuarios.cadastrarUsuario(usuario);
-                repositorioUsuarios.serializarUsuarios();
-
-                // Redirecionar para a tela de página inicial
-                new PaginaInicial(usuario).setVisible(true);
-
-                // Fechar o frame de login após o login bem-sucedido
-                dispose();
-            }
+    private void jCheckBoxMostrarSenhaItemStateChanged(java.awt.event.ItemEvent evt) {
+        if (jCheckBoxMostrarSenha.isSelected()) {
+            jPasswordField1.setEchoChar((char) 0); // Mostrar a senha
+        } else {
+            jPasswordField1.setEchoChar('\u2022'); // Ocultar a senha com bolinhas
         }
     }
+    
+
+    
+    
     
 
 
@@ -174,8 +194,10 @@ public class TelaLogin extends javax.swing.JFrame {
    
     }                                           
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {  
-    }  
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {  
+
+    }
+    
     public static void main(String args[]) {
         
         try {
@@ -202,9 +224,12 @@ public class TelaLogin extends javax.swing.JFrame {
         });
     }                   
     private javax.swing.JButton btnEntrar;
+    private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;                
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JCheckBox jCheckBoxMostrarSenha;
+             
 }
