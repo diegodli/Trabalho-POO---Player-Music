@@ -8,14 +8,20 @@ import models.Usuario;
 import models.UsuarioPremium;
 import models.MusicPlayer;
 import models.Musica;
-import view.MusicasPlaylist;
+
 import repository.VectorMusica;
 import repository.IRepositorioMusica;
 import java.util.List;
 import java.util.ArrayList;
 import java.io.File;
 
+
 public class Musicc extends JFrame {
+
+    private JTextField searchField;
+    private JButton searchButton;
+    private List<Musica> musicas;
+   
 
     /**
      *
@@ -30,21 +36,24 @@ public class Musicc extends JFrame {
     public Musicc(Usuario usuario) {
         this.usuario = usuario;
 
-        List<Musica> listaMusicas = new ArrayList<>();
-        
-        listaMusicas.add(new Musica("gustavomioto-gustavo-mioto-anti-amor-part-jorge-e-mateus-61cde797.wav", "anti-amor", "Gustavo Mioto"));
-        listaMusicas.add(new Musica("joaogomescantor-dengo-802f8e08.wav", "dengo", "João Gomes"));
-        listaMusicas.add(new Musica("henriqueejulianooficial-eu-e-a-saudade-b16028df.wav", "eu e a saudade", "Henrique e Juliano"));
-        listaMusicas.add(new Musica("pericles-ate-que-durou-7307fede.wav", "até que durou", "Péricles"));
-        listaMusicas.add(new Musica("nadsonoferinhadoarrochaweb-03-eu-vc-o-mar-e-ela-401f3c7f.wav", "eu você o mar e ela", "Nadson Ferinha"));
-        listaMusicas.add(new Musica("pablocantoroficial-nem-doeu-01ab7769.wav", "nem doeu", "Pablo"));
+        musicas = new ArrayList<>();
+
+        musicas = new ArrayList<>();
+        musicas.add(new Musica("gustavomioto-gustavo-mioto-anti-amor-part-jorge-e-mateus-61cde797.wav", "anti-amor", "Gustavo Mioto"));
+        musicas.add(new Musica("joaogomescantor-dengo-802f8e08.wav", "dengo", "João Gomes"));
+        musicas.add(new Musica("henriqueejulianooficial-eu-e-a-saudade-b16028df.wav", "eu e a saudade", "Henrique e Juliano"));
+        musicas.add(new Musica("pericles-ate-que-durou-7307fede.wav", "até que durou", "Péricles"));
+        musicas.add(new Musica("nadsonoferinhadoarrochaweb-03-eu-vc-o-mar-e-ela-401f3c7f.wav", "eu você o mar e ela", "Nadson Ferinha"));
+        musicas.add(new Musica("pablocantoroficial-nem-doeu-01ab7769.wav", "nem doeu", "Pablo"));
 
         String currentDirectory = System.getProperty("user.dir");
         String fileSeparator = File.separator;
-        String filePath = currentDirectory + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
+        String filePath = currentDirectory + fileSeparator + "Trabalho-POO---Player-Music" + fileSeparator + "Spotifly" + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+
+        
 
 
-        this.repositorioMusica = new VectorMusica(listaMusicas, filePath);  // Ou outra classe que implemente IRepositorioMusica
+        this.repositorioMusica = new VectorMusica(musicas, filePath);  // Ou outra classe que implemente IRepositorioMusica
 
         // Configurações do frame
         setTitle("Musicas");
@@ -56,6 +65,8 @@ public class Musicc extends JFrame {
         // Configuração do painel principal
         JPanel panel = new JPanel();
         panel.setLayout(new BorderLayout());
+
+        
       
        
         panel.setBackground(Color.blue);
@@ -67,6 +78,33 @@ public class Musicc extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(titleLabel, BorderLayout.PAGE_START);
+
+        
+        JPanel searchPanel = new JPanel();
+        searchPanel.setLayout(new FlowLayout());
+
+        searchField = new JTextField();
+        searchField.setPreferredSize(new Dimension(200, 30));
+        searchPanel.add(searchField);
+
+        searchButton = new JButton("Pesquisar");
+        searchButton.setForeground(Color.WHITE);
+        searchButton.setBackground(Color.BLACK);
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String searchTerm = searchField.getText();
+                Musica foundMusic = searchMusic(searchTerm);
+                if (foundMusic != null) {
+                    openMusicDetailPage(foundMusic, filePath);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Música não encontrada", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        });
+        searchPanel.add(searchButton);
+
+        panel.add(searchPanel, BorderLayout.PAGE_START);
     
 
         // Configuração do botão de volta à página inicial
@@ -166,6 +204,52 @@ public class Musicc extends JFrame {
 
 	public Musicc() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Musica searchMusic(String searchTerm) {
+        for (Musica musica : musicas) {
+            if (musica.getNome().equalsIgnoreCase(searchTerm)) {
+                return musica;
+            }
+        }
+        return null;
+    }
+
+    public void openMusicDetailPage(Musica foundMusic, String filePath) {
+        JFrame musicDetailFrame = new JFrame("Detalhes da Música");
+        musicDetailFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        musicDetailFrame.setSize(400, 200);
+        musicDetailFrame.setLocationRelativeTo(null);
+
+        JPanel musicDetailPanel = new JPanel();
+        musicDetailPanel.setLayout(new FlowLayout());
+
+        JLabel nameLabel = new JLabel("Nome: " + foundMusic.getNome());
+        JLabel artistLabel = new JLabel("Artista: " + foundMusic.getArtista());
+
+        JButton playButton = new JButton("Play");
+        playButton.setPreferredSize(new Dimension(100, 30));
+        playButton.setBackground(new Color(173, 216, 230));
+        playButton.addActionListener(new ActionListener() {
+            @Override
+                public void actionPerformed(ActionEvent e) {
+                    String musicFilePath = filePath + foundMusic.getUrl();
+                    if (new File(musicFilePath).exists()) {
+                        musicPlayer.play(musicFilePath);
+                    } else {
+                        System.out.println("Arquivo não encontrado: " + musicFilePath);
+                    }
+                }
+            });
+
+        
+
+        musicDetailPanel.add(nameLabel);
+        musicDetailPanel.add(artistLabel);
+        musicDetailPanel.add(playButton);
+
+        musicDetailFrame.add(musicDetailPanel);
+        musicDetailFrame.setVisible(true);
     }
 
     public static void main(String[] args) {
