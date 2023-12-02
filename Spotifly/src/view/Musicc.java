@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import models.Usuario;
-import models.UsuarioPremium;
 import models.MusicPlayer;
 import models.Musica;
 
@@ -49,7 +48,7 @@ public class Musicc extends JFrame {
 
         String currentDirectory = System.getProperty("user.dir");
         String fileSeparator = File.separator;
-        String filePath = currentDirectory + fileSeparator + "Trabalho-POO---Player-Music" + fileSeparator + "Spotifly" + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+        String filePath = currentDirectory + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
 
         
 
@@ -118,6 +117,7 @@ public class Musicc extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 new PaginaInicial(usuario).setVisible(true);
                 dispose(); // Fecha o frame atual (Music)
+                musicPlayer.pause();
             }
         });
 
@@ -235,6 +235,7 @@ public class Musicc extends JFrame {
         JButton playButton = new JButton("Play");
         playButton.setPreferredSize(new Dimension(100, 30));
         playButton.setBackground(new Color(173, 216, 230));
+        
         playButton.addActionListener(new ActionListener() {
             @Override
                 public void actionPerformed(ActionEvent e) {

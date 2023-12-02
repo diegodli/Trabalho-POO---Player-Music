@@ -8,20 +8,24 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import models.MusicPlayer;
 import repository.VectorUsuario;
 
 
 public class MusicasPlaylist {
 
     private static Usuario usuario2;
+    private static MusicPlayer musicPlayer;
    
   
     public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI(usuario2);
         });
+       
     }
 
     public static void createAndShowGUI(final Usuario usuario) {
@@ -48,7 +52,8 @@ public class MusicasPlaylist {
         // Adicionar botão de voltar para Playlist no canto superior direito
         final JButton backButton = new JButton("Voltar para Playlist");
         backButton.addActionListener((final ActionEvent e) -> {
-            frame.dispose(); // Fechar o frame atual
+            frame.dispose();// Fechar o frame atual
+            musicPlayer.pause();
             final Playlist playlist = new Playlist();
             playlist.createAndShowGUI(usuario); // Correção aqui
         });
@@ -73,6 +78,8 @@ public class MusicasPlaylist {
         musicPanel.setLayout(new BoxLayout(musicPanel, BoxLayout.Y_AXIS));
         musicPanel.setBackground(Color.LIGHT_GRAY);
         
+         musicPlayer = new MusicPlayer();
+        
         ArrayList<Musica> musicasTemporarias = new ArrayList<Musica>(usuario.getPlaylist().listarPlaylist());
         VectorUsuario repositorioUsuario = new VectorUsuario();
 
@@ -85,14 +92,25 @@ public class MusicasPlaylist {
             playButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
-                    // Lógica para tocar a música
+                    
+                    String currentDirectory = System.getProperty("user.dir");
+                    String fileSeparator = File.separator;
+                    String filePath = currentDirectory + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+
+                    
+                     String musicFilePath = filePath + musica.getUrl();
+                    if (new File(musicFilePath).exists()) {
+                        musicPlayer.play(musicFilePath);
+                    } else {
+                        System.out.println("Arquivo não encontrado: " + musicFilePath);
+                    }// Lógica para tocar a música
                 }
             });
 
             pauseButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
-                    // Lógica para pausar a música
+                      musicPlayer.pause();// Lógica para pausar a música
                 }
             });
             
