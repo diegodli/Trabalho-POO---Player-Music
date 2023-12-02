@@ -11,7 +11,7 @@ public abstract class Usuario implements Serializable {
     
     private String username;
     private String password;
-    public VectorPlaylist playlist;
+    protected VectorPlaylist playlist;
 
     public Usuario(String username, String password) {
         this.username = username;

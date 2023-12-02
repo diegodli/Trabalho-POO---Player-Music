@@ -17,7 +17,7 @@ public class UsuarioComum extends Usuario implements Serializable {
     // Implementação específica para usuário comum
     @Override
    public void adicionarMusica(Musica musica){
-       if(this.playlist.tamanho() < numMusicas){
+       if(playlist.tamanho() < numMusicas){
            playlist.adicionar(musica);
        }
    }

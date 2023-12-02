@@ -73,7 +73,7 @@ public class MusicasPlaylist {
         musicPanel.setLayout(new BoxLayout(musicPanel, BoxLayout.Y_AXIS));
         musicPanel.setBackground(Color.LIGHT_GRAY);
         
-        ArrayList<Musica> musicasTemporarias = new ArrayList<Musica>(usuario.playlist.listarPlaylist());
+        ArrayList<Musica> musicasTemporarias = new ArrayList<Musica>(usuario.getPlaylist().listarPlaylist());
         VectorUsuario repositorioUsuario = new VectorUsuario();
 
         for (final Musica musica : musicasTemporarias) {
@@ -112,7 +112,7 @@ public class MusicasPlaylist {
                 public void actionPerformed(final ActionEvent e) {  //apagando botão por botão
                     
                     musicasTemporarias.remove(musica);
-                    usuario.playlist.remover(musica);
+                    usuario.removerMusica(musica);
                     repositorioUsuario.desserializarUsuarios();
                     repositorioUsuario.atualizarUsuario(usuario);
                     
