@@ -4,9 +4,7 @@ import java.io.Serializable;
 
 
 public class UsuarioPremium extends Usuario implements Serializable{
-
-    /*private String username;
-    private String password;*/
+    private static final long serialVersionUID = 1L;
 
     public UsuarioPremium(String username, String password) {
         super(username, password);
@@ -14,7 +12,7 @@ public class UsuarioPremium extends Usuario implements Serializable{
 
     // Implementação específica para usuário premium
     @Override
-    public boolean podeAdd() {
-       return true;
+    public void adicionarMusica(Musica musica){
+        playlist.adicionar(musica);
     }
 }

@@ -2,25 +2,23 @@ package models;
 
 import java.io.Serializable;
 import models.*;
+import repository.*;
 
 public class UsuarioComum extends Usuario implements Serializable {
-    
+     private static int numMusicas = 4;
+     private static final long serialVersionUID = 1L;
 
 
     public UsuarioComum(String username, String password) {
         super(username, password);
-        this.setNumMusicas(4);
     }
 
 
     // Implementação específica para usuário comum
     @Override
-    public boolean podeAdd() {
-        if(this.getPlaylist().tamanho()<numMusicas){
-            return true;
-        }
-        else{
-            return false;
-        }
-    }
+   public void adicionarMusica(Musica musica){
+       if(this.playlist.tamanho() < numMusicas){
+           playlist.adicionar(musica);
+       }
+   }
 }

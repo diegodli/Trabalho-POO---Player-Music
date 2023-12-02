@@ -5,12 +5,14 @@ import java.util.Vector;
 import java.util.List;
 import java.util.ArrayList;
 import models.Musica;
+import java.io.Serializable;
 
 
 
-public class VectorMusica implements IRepositorioMusica {
+public class VectorMusica implements IRepositorioMusica, Serializable {
     private Vector<Musica> musicas;
     private String diretorioMusica;
+    private static final long serialVersionUID = 3L;
 
     public VectorMusica(List<Musica> musicas, String diretorioMusica) {
         this.musicas = new Vector<>(musicas);

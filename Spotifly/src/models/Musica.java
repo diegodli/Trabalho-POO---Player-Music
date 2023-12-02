@@ -1,12 +1,15 @@
 // models/Musica.java
 package models;
 
-public class Musica {
+import java.io.Serializable;
+
+public class Musica implements Serializable{
     private String url;
     private String nome;
     private String artista;
+    private static final long serialVersionUID = 2L;
 
-    public Musica(String url, String nome, String artista) {
+    public Musica (String url, String nome, String artista){
         this.url = url;
         this.nome = nome;
         this.artista = artista;

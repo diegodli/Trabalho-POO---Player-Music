@@ -36,7 +36,7 @@ public class Playlist {
             @Override
             public void mouseClicked(MouseEvent e) {
                 frame.dispose(); // Fechar o frame atual
-                MusicasPlaylist.createAndShowGUI(usuario, null); // Correção aqui
+                MusicasPlaylist.createAndShowGUI(usuario); // Correção aqui
             }
         });
 

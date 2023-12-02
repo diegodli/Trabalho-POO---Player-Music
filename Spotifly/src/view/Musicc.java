@@ -148,14 +148,16 @@ public class Musicc extends JFrame {
             JButton adicionarButton = new JButton("Adicionar");
             adicionarButton.setBackground(new Color(173, 216, 230));
             adicionarButton.setPreferredSize(new Dimension(100, 30));
+            
+            
             adicionarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Musica novaMusica = new Musica("nome", "artista", "joaogomescantor-dengo-802f8e08.wav");
-                    musicas.add(novaMusica);
+                    usuario.playlist.adicionar(musica);
+                    
             
                     // Cria e mostra a GUI atualizada
-                    MusicasPlaylist.createAndShowGUI(usuario, musicas);
+                    MusicasPlaylist.createAndShowGUI(usuario);
                 }
             });
             

@@ -11,16 +11,13 @@ public abstract class Usuario implements Serializable {
     
     private String username;
     private String password;
-    protected VectorPlaylist playlist;
-    protected int numMusicas;
+    public VectorPlaylist playlist;
 
     public Usuario(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public void setNumMusicas(int numMusicas){ 
-      this.numMusicas = numMusicas ; 
+        this.playlist = new VectorPlaylist();
+        
     }
 
     public String getUsername() {
@@ -30,20 +27,17 @@ public abstract class Usuario implements Serializable {
     public String getPassword() {
         return password;
     }
-    public int getNumMusicas(){
-        return numMusicas;
-    }
+
     public VectorPlaylist getPlaylist(){
         return playlist;
     }
-
-    // Método abstrato que pode ser implementado nas subclasses
-    public abstract boolean podeAdd();
-
-    public boolean isPremium() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+    public abstract void adicionarMusica(Musica musica);
+    
+    public void removerMusica(Musica musica){
+        playlist.remover(musica);
     }
-
+    
 	public void setNome(String string) {
 	}
 }

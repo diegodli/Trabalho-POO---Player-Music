@@ -15,20 +15,17 @@ import java.util.List;
 public class MusicasPlaylist {
 
     private static Usuario usuario2;
-    private static List<Musica> musicas2;
+   
   
     public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
-            createAndShowGUI(usuario2, musicas2);
+            createAndShowGUI(usuario2);
         });
     }
 
-    public static void createAndShowGUI(final Usuario usuario, List<Musica> musicas) {
+    public static void createAndShowGUI(final Usuario usuario) {
         usuario2 = usuario;
-        musicas2 = musicas;
-        if (musicas == null) {
-            musicas = new ArrayList<>();
-        }
+       
     
 
         final JFrame frame = new JFrame("Músicas");
@@ -74,8 +71,10 @@ public class MusicasPlaylist {
         final JPanel musicPanel = new JPanel();
         musicPanel.setLayout(new BoxLayout(musicPanel, BoxLayout.Y_AXIS));
         musicPanel.setBackground(Color.LIGHT_GRAY);
+        
+        ArrayList<Musica> musicasTemporarias = new ArrayList<Musica>(usuario.playlist.listarPlaylist());
 
-        for (final Musica musica : musicas) {
+        for (final Musica musica : musicasTemporarias) {
             final JButton musicaButton = new JButton(musica.getNome());
             final JButton playButton = new JButton("Play");
             final JButton pauseButton = new JButton("Pause");
@@ -109,6 +108,10 @@ public class MusicasPlaylist {
              retirarButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {  //apagando botão por botão
+                    
+                    musicasTemporarias.remove(musica);
+                    usuario.playlist.remover(musica);
+                    
                     musicButtonPanel.remove(musicaButton);
                     musicButtonPanel.remove(playButton);
                     musicButtonPanel.remove(pauseButton);
