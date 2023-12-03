@@ -44,13 +44,15 @@ public class Musicc extends JFrame {
         musicas.add(new Musica("joaogomescantor-dengo-802f8e08.wav", "dengo", "João Gomes"));
         musicas.add(new Musica("henriqueejulianooficial-eu-e-a-saudade-b16028df.wav", "eu e a saudade", "Henrique e Juliano"));
         musicas.add(new Musica("pericles-ate-que-durou-7307fede.wav", "até que durou", "Péricles"));
-        musicas.add(new Musica("nadsonoferinhadoarrochaweb-03-eu-vc-o-mar-e-ela-401f3c7f.wav", "eu você o mar e ela", "Nadson Ferinha"));
+
         musicas.add(new Musica("pablocantoroficial-nem-doeu-01ab7769.wav", "nem doeu", "Pablo"));
+        musicas.add(new Musica("Marília Mendonça - Leão - Decretos Reais.wav", "Leão", "Rainha"));
+        musicas.add(new Musica("Ana Castela - Tô Voltando.wav", "Tô Voltando", "Ana Castela"));
+        musicas.add(new Musica("Gusttavo Lima - Canudinho Part. Ana Castela.wav", "Canudinho", "Gusttavo Lima feat Ana Castela"));
 
         String currentDirectory = System.getProperty("user.dir");
         String fileSeparator = File.separator;
         String filePath = currentDirectory + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
-
         
 
 
@@ -162,10 +164,13 @@ public class Musicc extends JFrame {
                         repositorioUsuario.atualizarUsuario(usuario);            
             
                         MusicasPlaylist.createAndShowGUI(usuario);
+
+                        dispose();
                     }
                     catch(AdicionarMusicaException ame) {
                         JOptionPane.showMessageDialog(null, ame.getMessage());
                     }
+                    
                 }
             });
             
