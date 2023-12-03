@@ -69,7 +69,7 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     public void serializarUsuarios() {
     File file = new File(filePath);
     if (file.exists()) {
-        //file.delete();
+        file.delete();
     }
     try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(filePath))) {
         out.writeObject(usuarios);

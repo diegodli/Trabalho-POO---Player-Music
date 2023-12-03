@@ -11,7 +11,7 @@ public class UsuarioPremium extends Usuario implements Serializable{
         super(username, password);
     }
 
-    // Implementação específica para usuário premium
+ 
     @Override
     public void adicionarMusica(Musica musica) throws AdicionarMusicaException {
         playlist.adicionar(musica);

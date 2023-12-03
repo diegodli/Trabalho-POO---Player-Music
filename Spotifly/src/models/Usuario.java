@@ -1,8 +1,5 @@
 package models;
 
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import repository.VectorPlaylist;
 
@@ -44,6 +41,7 @@ public abstract class Usuario implements Serializable {
         playlist.remover(musica);
     }
     
-	public void setNome(String string) {
+	public void setNome(String username) {
+            this.username = username;
 	}
 }
