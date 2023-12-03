@@ -15,12 +15,12 @@ public class PlayerMusica {
         this.isPlaying = false;
     }
 
-    public void play() {
+  public void play() {
         if (!isPlaying) {
             System.out.println("Tocando: " + nomeMusica + " - " + autor);
             System.out.println("URL: " + url);
-            isPlaying = true;
-        } else {
+                isPlaying = true;
+            } else {
             System.out.println("A música já está sendo reproduzida.");
         }
     }

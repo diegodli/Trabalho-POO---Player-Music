@@ -159,7 +159,7 @@ public class Musicc extends JFrame {
                     repositorioUsuario.desserializarUsuarios();
                     try {
                         usuario.adicionarMusica(musica);
-                        repositorioUsuario.atualizarUsuario(usuario);
+                        repositorioUsuario.atualizarUsuario(usuario);            
             
                         MusicasPlaylist.createAndShowGUI(usuario);
                     }

@@ -49,6 +49,10 @@ public class MusicasPlaylist {
 
         // Adicionar botão de tocar a playlist
         final JButton playCompletoButton = new JButton("Play");
+        playCompletoButton.addActionListener((final ActionEvent e) -> {
+            musicPlayer.playAll();
+        });
+        
         // Adicionar botão de voltar para Playlist no canto superior direito
         final JButton backButton = new JButton("Voltar para Playlist");
         backButton.addActionListener((final ActionEvent e) -> {
@@ -88,21 +92,25 @@ public class MusicasPlaylist {
         VectorUsuario repositorioUsuario = new VectorUsuario();
 
         for (final Musica musica : musicasTemporarias) {
+        
             final JButton musicaButton = new JButton(musica.getNome());
             final JButton playButton = new JButton("Play");
             final JButton pauseButton = new JButton("Pause");
             final JButton retirarButton = new JButton("Remover");
+            
+            String currentDirectory = System.getProperty("user.dir");
+            String fileSeparator = File.separator;
+            String filePath = currentDirectory + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+
+                    
+            String musicFilePath = filePath + musica.getUrl();
+            musicPlayer.addToPlaylist(musicFilePath);
 
             playButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(final ActionEvent e) {
                     
-                    String currentDirectory = System.getProperty("user.dir");
-                    String fileSeparator = File.separator;
-                    String filePath = currentDirectory + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
-
-                    
-                     String musicFilePath = filePath + musica.getUrl();
+                   
                     if (new File(musicFilePath).exists()) {
                         musicPlayer.play(musicFilePath);
                     } else {
