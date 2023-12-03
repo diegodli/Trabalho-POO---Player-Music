@@ -47,7 +47,7 @@ public class PaginaInicial extends JFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 
-                String caminhoImagem = "Spotifly\\src\\Imagem\\img-fundo.jpg";
+                String caminhoImagem = "src\\Imagem\\img-fundo.jpg";
                 Image imagemDeBackground = new ImageIcon(caminhoImagem).getImage();
                 g.drawImage(imagemDeBackground, 0, 0, getWidth(), getHeight(), this);
             }
