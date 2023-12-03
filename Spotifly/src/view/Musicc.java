@@ -52,7 +52,7 @@ public class Musicc extends JFrame {
 
         String currentDirectory = System.getProperty("user.dir");
         String fileSeparator = File.separator;
-        String filePath = "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+        String filePath = currentDirectory + fileSeparator + "Spotifly" + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
         
 
         this.repositorioMusica = new VectorMusica(musicas, filePath);  // Ou outra classe que implemente IRepositorioMusica

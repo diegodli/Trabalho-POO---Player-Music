@@ -93,7 +93,7 @@ public class MusicasPlaylist {
             
             String currentDirectory = System.getProperty("user.dir");
             String fileSeparator = File.separator;
-            String filePath = "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+            String filePath = currentDirectory + fileSeparator + "Spotifly" + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
 
                     
             String musicFilePath = filePath + musica.getUrl();
