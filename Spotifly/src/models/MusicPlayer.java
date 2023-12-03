@@ -21,6 +21,12 @@ public class MusicPlayer {
         playlist.add(filePath);
     }
     
+    public void removeFromPlaylist(String filePath){
+        if(playlist.contains(filePath)){
+            this.playlist.remove(filePath);
+        }
+    }
+    
      public void play(String filePath) {
         try {
             if (clip != null && clip.isOpen()) {
