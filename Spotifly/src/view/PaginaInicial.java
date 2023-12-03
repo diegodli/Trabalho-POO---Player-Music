@@ -16,11 +16,10 @@ public class PaginaInicial extends JFrame {
 
     public PaginaInicial(Usuario usuario) {
         this.usuario = usuario;
-        // Configurações do frame
+       
         setTitle("Spotifly");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
-        setLocationRelativeTo(null); // Centraliza a janela
         
 
         // Cria um painel para o cabeçalho
@@ -42,21 +41,20 @@ public class PaginaInicial extends JFrame {
         userInfoLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         headerPanel.add(userInfoLabel, BorderLayout.NORTH);
         
-        // Cria um painel para o conteúdo central (com espaço para a imagem de background)
+        
         JPanel contentPanel = new JPanel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                // Adicione aqui o código para carregar a imagem de background
-                // Exemplo:
-                String caminhoImagem = "Spotifly\\src\\Imagem\\img-fundo.jpg"; // Substitua pelo caminho real da sua imagem
+                
+                String caminhoImagem = "Spotifly\\src\\Imagem\\img-fundo.jpg";
                 Image imagemDeBackground = new ImageIcon(caminhoImagem).getImage();
                 g.drawImage(imagemDeBackground, 0, 0, getWidth(), getHeight(), this);
             }
         };
         contentPanel.setLayout(new GridBagLayout()); // Layout para posicionar os botões
         contentPanel.setBackground(Color.WHITE); // Cor de fundo do painel de conteúdo
-        // Adiciona o painel de conteúdo à janela
+        
         add(contentPanel, BorderLayout.CENTER);
         
         // Adiciona botões ao painel de conteúdo
@@ -71,7 +69,7 @@ public class PaginaInicial extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Musicc(usuario).setVisible(true);
-                dispose(); // Fecha o frame atual (Pagina_inicial)
+                dispose(); 
             }
         });
         contentPanel.add(musicasButton, gbc);
@@ -84,10 +82,6 @@ public class PaginaInicial extends JFrame {
                 new Playlist();
                 Playlist.createAndShowGUI(usuario);
                 dispose();
-                // Adicione a lógica para exibir o frame de playlist
-                // Exemplo: new PlaylistFrame().setVisible(true);
-                // Adicione a lógica para exibir o frame de playlist
-                // Exemplo: new PlaylistFrame().setVisible(true);
             }
         });
         contentPanel.add(playlistButton, gbc);
