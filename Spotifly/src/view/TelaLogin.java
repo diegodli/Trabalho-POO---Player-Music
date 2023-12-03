@@ -198,7 +198,7 @@ public class TelaLogin extends javax.swing.JFrame {
 
     }
     
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -222,7 +222,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 new TelaLogin().setVisible(true);
             }
         });
-    }                   
+    }         */          
     private javax.swing.JButton btnEntrar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JLabel jLabel1;

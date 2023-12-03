@@ -267,7 +267,7 @@ public class TelaCriarConta extends javax.swing.JFrame {
 
    
     
-    public static void main(String args[]) {
+    /*public static void main(String args[]) {
         
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -291,7 +291,7 @@ public class TelaCriarConta extends javax.swing.JFrame {
                 new TelaCriarConta().setVisible(true);
             }
         });
-    }    
+    }    */
     
     private javax.swing.JButton btnVoltar;
     private javax.swing.JButton btnCadastrar;

@@ -21,12 +21,12 @@ public class MusicasPlaylist {
     private static MusicPlayer musicPlayer;
    
   
-    public static void main(final String[] args) {
+    /*public static void main(final String[] args) {
         SwingUtilities.invokeLater(() -> {
             createAndShowGUI(usuario2);
         });
        
-    }
+    }*/
 
     public static void createAndShowGUI(final Usuario usuario) {
         usuario2 = usuario;
