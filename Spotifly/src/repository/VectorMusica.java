@@ -37,6 +37,8 @@ public class VectorMusica implements IRepositorioMusica, Serializable {
         repositorioMusica.adicionar(musica4);
         repositorioMusica.adicionar(musica6);
         repositorioMusica.adicionar(musica7);
+        repositorioMusica.adicionar(musica8);
+        repositorioMusica.adicionar(musica9);
         repositorioMusica.imprimirUrlsMusicas();
     }
 

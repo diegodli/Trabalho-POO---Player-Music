@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import models.Playlist;
 
 
-
 public class PrimeiraTela extends JFrame {
     
 
