@@ -5,7 +5,7 @@ import models.Musica;
 
 
 public abstract class AdicionarMusicaException extends Exception {
-    private Musica musica;
+    private final Musica musica;
     
     public AdicionarMusicaException(Musica musica) {
         super("Não foi possível adicionar a música na playlist!!");

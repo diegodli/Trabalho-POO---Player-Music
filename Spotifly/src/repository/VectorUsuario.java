@@ -1,5 +1,6 @@
 package repository;
 
+import Exception.UsuarioExistenteException;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,8 +16,11 @@ public class VectorUsuario implements Serializable, IRepositorioUsuario {
     }
 
     public void cadastrarUsuario(final Usuario usuario) {
-        usuarios.add(usuario);
-        serializarUsuarios(); // Adiciona serialização após cada cadastro
+        if (!existe(usuario.getUsername())) {
+            usuarios.add(usuario);
+            serializarUsuarios();
+        }   
+        
     }
     
     public void removerUsuario(final Usuario usuario){

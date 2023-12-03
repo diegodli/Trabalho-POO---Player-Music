@@ -1,5 +1,6 @@
 package view;
 
+import Exception.UsuarioExistenteException;
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -77,17 +78,29 @@ public class TelaCriarConta extends javax.swing.JFrame {
         jTextField1.getDocument().addDocumentListener(new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                verificarNomeUsuario();
+                try {
+                    verificarNomeUsuario();}
+                catch (UsuarioExistenteException uee) {
+                    avisoLabel.setText(uee.getMessage());
+                }
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                verificarNomeUsuario();
+                try {
+                    verificarNomeUsuario();}
+                catch (UsuarioExistenteException uee) {
+                    avisoLabel.setText(uee.getMessage());
+                }
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                verificarNomeUsuario();
+               try {
+                    verificarNomeUsuario();}
+                catch (UsuarioExistenteException uee) {
+                    avisoLabel.setText(uee.getMessage());
+                }
             }
         });
 
@@ -194,15 +207,15 @@ public class TelaCriarConta extends javax.swing.JFrame {
     }
 
    
-    private void verificarNomeUsuario() {
+    private void verificarNomeUsuario() throws UsuarioExistenteException {
         String username = jTextField1.getText();
         Usuario usuario = repositorioUsuarios.buscarUsuario(username);
         
         if (usuario != null) {
-            avisoLabel.setText("Nome de usuário já cadastrado");
             btnCadastrar.setEnabled(false);
+            throw new UsuarioExistenteException(username);
         } else {
-            avisoLabel.setText(""); // Limpar mensagem de aviso
+            avisoLabel.setText("");
             btnCadastrar.setEnabled(true);
             
         }
@@ -217,6 +230,7 @@ public class TelaCriarConta extends javax.swing.JFrame {
     }
    
     private void cadastrarUsuario() {
+        
         String username = jTextField1.getText();
         if ("".equals(username)) {
             JOptionPane.showMessageDialog(null, "Digite um nome de usuário");
@@ -227,22 +241,24 @@ public class TelaCriarConta extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Digite uma senha");
             }
             else {
-                String tipoUsuario = (String) tipoUsuarioComboBox.getSelectedItem();
+               String tipoUsuario = (String) tipoUsuarioComboBox.getSelectedItem();
                 Usuario novoUsuario = null;
                 if ("Comum".equals(tipoUsuario)) {
-                    novoUsuario = new UsuarioComum(username, password);
-                    
+                     novoUsuario = new UsuarioComum(username, password);
+
                 } else if ("Premium".equals(tipoUsuario)) {
                     novoUsuario = new UsuarioPremium(username, password);
-                
+
                 }
-                
+
                 repositorioUsuarios.cadastrarUsuario(novoUsuario);
                 new PaginaInicial(novoUsuario).setVisible(true);
                 dispose();
             }
         }
-            
+        
+        
+
            
     }
 

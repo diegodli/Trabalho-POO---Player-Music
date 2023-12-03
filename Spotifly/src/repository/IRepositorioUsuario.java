@@ -1,10 +1,16 @@
 package repository;
 
+import Exception.UsuarioExistenteException;
 import models.Usuario;
 
 public interface IRepositorioUsuario{
 
     public Usuario buscarUsuario(String username);
     
-    public void cadastrarUsuario(Usuario usuario);  
+    /**
+     *
+     * @param usuario
+     * @throws UsuarioExistenteException
+     */
+    public void cadastrarUsuario(final Usuario usuario);  
 }

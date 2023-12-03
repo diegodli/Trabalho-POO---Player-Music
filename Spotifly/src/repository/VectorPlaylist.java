@@ -39,9 +39,9 @@ public class VectorPlaylist implements IRepositorioPlaylist, Serializable{
             if(playlist.contains(musica)){
                 this.playlist.remove(musica);
             }
-            // exceção para se a música não estiver na playlist
+           
         }
-        //exceção para se o perfil e/ou música não for encontrado
+        
    
     
     public Musica buscar(Musica musica){

@@ -9,7 +9,7 @@ import models.Musica;
 
 public class LimiteDeMusicasAtingidoException extends AdicionarMusicaException {
     
-    private Musica musica;
+    private final Musica musica;
 
     public LimiteDeMusicasAtingidoException (Musica musica) {
         super(musica, "Limite de Músicas Atingido no Plano Comum");
@@ -17,6 +17,11 @@ public class LimiteDeMusicasAtingidoException extends AdicionarMusicaException {
         this.musica = musica;
     }
 
+    /**
+     *
+     * @return
+     */
+    @Override
     public Musica getMusica() {
         return this.musica;
     }
