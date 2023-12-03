@@ -52,9 +52,8 @@ public class Musicc extends JFrame {
 
         String currentDirectory = System.getProperty("user.dir");
         String fileSeparator = File.separator;
-        String filePath = currentDirectory + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
+        String filePath = currentDirectory + fileSeparator + "Spotifly" + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
         
-
 
         this.repositorioMusica = new VectorMusica(musicas, filePath);  // Ou outra classe que implemente IRepositorioMusica
 
@@ -169,8 +168,7 @@ public class Musicc extends JFrame {
                     }
                     catch(AdicionarMusicaException ame) {
                         JOptionPane.showMessageDialog(null, ame.getMessage());
-                    }
-                    
+                    } 
                 }
             });
             
@@ -267,16 +265,6 @@ public class Musicc extends JFrame {
         musicDetailFrame.add(musicDetailPanel);
         musicDetailFrame.setVisible(true);
     }
-
-    /*public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new TelaLogin().setVisible(true);
-                
-            }
-        });
-    }*/
 
     public static class setVisible {
 

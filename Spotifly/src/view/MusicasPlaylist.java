@@ -19,14 +19,7 @@ public class MusicasPlaylist {
 
     private static Usuario usuario2;
     private static MusicPlayer musicPlayer;
-   
-  
-    /*public static void main(final String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            createAndShowGUI(usuario2);
-        });
-       
-    }*/
+
 
     public static void createAndShowGUI(final Usuario usuario) {
         usuario2 = usuario;
@@ -100,7 +93,7 @@ public class MusicasPlaylist {
             
             String currentDirectory = System.getProperty("user.dir");
             String fileSeparator = File.separator;
-            String filePath = currentDirectory + fileSeparator + "src" + fileSeparator + "MusicsTeste" + fileSeparator;
+            String filePath = currentDirectory + fileSeparator + "Spotifly" + fileSeparator +"src" + fileSeparator + "MusicsTeste" + fileSeparator;
 
                     
             String musicFilePath = filePath + musica.getUrl();

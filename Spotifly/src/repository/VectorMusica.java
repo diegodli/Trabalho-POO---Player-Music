@@ -18,29 +18,7 @@ public class VectorMusica implements IRepositorioMusica, Serializable {
         this.musicas = new Vector<>(musicas);
         this.diretorioMusica = diretorioMusica;
     }
-
-    public static void main(String[] args) {
-        VectorMusica repositorioMusica = new VectorMusica();
-
-        Musica musica1 = new Musica("gustavomioto-gustavo-mioto-anti-amor-part-jorge-e-mateus-61cde797.wav", "anti-amor", "Gustavo Mioto");
-        Musica musica2 = new Musica("joaogomescantor-dengo-802f8e08.wav", "dengo", "João Gomes");
-        Musica musica3 = new Musica("henriqueejulianooficial-eu-e-a-saudade-b16028df.wav", "eu e a saudade", "Henrique e Juliano");
-        Musica musica4 = new Musica("pericles-ate-que-durou-7307fede.wav", "até que durou", "Péricles");
-        Musica musica6 = new Musica("pablocantoroficial-nem-doeu-01ab7769.wav", "nem doeu", "Pablo");
-        Musica musica7 = new Musica("Marília Mendonça - Leão - Decretos Reais.wav", "Leão", "Rainha");
-        Musica musica8 = new Musica("Ana Castela - Tô Voltando.wav", "To Voltando", "Ana Castela");
-        Musica musica9 = new Musica("Gusttavo Lima - Canudinho Part. Ana Castela.wav", "Canudinho", "Embaixador feat Ana Castela");
-
-        repositorioMusica.adicionar(musica1);
-        repositorioMusica.adicionar(musica2);
-        repositorioMusica.adicionar(musica3);
-        repositorioMusica.adicionar(musica4);
-        repositorioMusica.adicionar(musica6);
-        repositorioMusica.adicionar(musica7);
-        repositorioMusica.adicionar(musica8);
-        repositorioMusica.adicionar(musica9);
-        repositorioMusica.imprimirUrlsMusicas();
-    }
+    
 
     public VectorMusica() {
         this.musicas = new Vector<>();
